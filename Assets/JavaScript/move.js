@@ -1,9 +1,14 @@
 //TODO movement logic and functions for pieces
 
-var squares = generateBoard();
+var board = generateBoard();
+const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
+//used to turn an id into coordinates for traversing the board. 
+//IMPORTANT
+//coords[1] is a number pulled directly from the id and are therefore indexed 1 to 8
+//coords [0] calls the converted letter, which are drawn from an array and will be indexed 0 to 7
+//so its important to always use checkSquare after traversing the board to properly get the id back.
 function getCoordinates(id) {
-    var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
     var  input = id.split("");
     var x;
     for(var i = 0; i< alphabet.length; i++){
@@ -15,25 +20,83 @@ function getCoordinates(id) {
     return coords;
 }
 
-function checkLine(direction, id) {
-    if(direction === "up"){
+//NOTE: input is in a string direction of a single letter and [num,num] coordinates. remember to use get coordinates for input from an id in addition this function doesn't check whether a square actually exists. this allows for repition for more complex pieces such as knights.
+function traverseFrom(direction, coords) {
+    var letterNum = coords[0];
+    var num = coords[1];
+    if(direction === "u"){
+        num++;
+        coords[1] = num;
+        return coords;
+    }
+    else if(direction === "d"){
+        num--;
+        coords[1] = num;
+        return coords;
+    }
+    else if(direction === "l"){
+        letterNum--;
+        coords[0] =letterNum;
+        return coords;
+    }
+    else if(direction === "r"){
+        letterNum++;
+        coords[0] =letterNum;
+        return coords;
+    }
+    //NOTE: I am almost positive that Js is not gonna like the recursion, but if it does work, this should make traversing one square in any direction possible, and allow for chain calls with knights in mind.
+    else if(direction === "ur"){
+        coords = traverseFrom('u', coords);
+        coords = traverseFrom('r', coords);
+        return coords;
 
     }
-    else if(direction === "down"){
-        
+    else if(direction === "ul"){
+        coords = traverseFrom('u', coords);
+        coords = traverseFrom('l', coords);
+        return coords;
     }
-    else if(direction === "left"){
-        
+     else if(direction === "dr"){
+        coords = traverseFrom('d', coords);
+        coords = traverseFrom('r', coords);
+        return coords;
     }
-    else if(direction === "right"){
-        
+    else if(direction === "dl"){
+        coords = traverseFrom('d', coords);
+        coords = traverseFrom('l', coords);
+        return coords;
+    } else{
+        throw new console.error("invalid input in function traverseFrom");
     }
 
 
 
 }
 
-function checkDiagonal(direction, square){
-
+//takes coordinates and parses them to an id. Then grabs obj by id and checks the occupation value, and returns it. 
+function parseCoords(coords){
+    var num;
+    var letter;
+    var id;
+    if(coords[0]< 8 && coords[0]>=0 && coords[1]<= 8 && coords[1]>0){
+        letter = alphabet[coords[0]]
+        num = coords[1];
+        id = `${letter}${num}`
+        console.log(id);
+        return id;
+    } else{
+        //IMPORTANT: this return case for if the coordinate provided is not a square can be null or false. up to the group I guess.
+        throw new console.error('Invalid input for function parseCoords');
+    }
 }
+function checkSquare(id){
 
+        //I've never used .filter before. I expect a problem here at some point
+        var targetSquare = board.filter(function(elem,index){
+            console.log('works');
+            return elem.id == id;
+        });
+        var occupation = targetSquare.occupation;
+        console.log(occupation);
+        return occupation;
+}
