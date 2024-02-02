@@ -1,3 +1,18 @@
+var spriteDictionary = {
+    "r": "./Assets/Sprites/blacRook.svg",
+    "R": "./Assets/Sprites/whiteRook.svg",
+    "n": "./Assets/Sprites/blackKnight.svg",
+    "N": "./Assets/Sprites/whiteKnight.svg",
+    "b": "./Assets/Sprites/blackBishop.svg",
+    "B": "./Assets/Sprites/whiteBishop.svg",
+    "k": "./Assets/Sprites/blackKing.svg",
+    "K": "./Assets/Sprites/whiteKing.svg",
+    "q": "./Assets/Sprites/blackQueen.svg",
+    "Q": "./Assets/Sprites/whiteQueen.svg",
+    "p": "./Assets/Sprites/blackPawn.svg",
+    "P": "./Assets/Sprites/whitePawn.svg"
+}
+
 
 class Square{
     constructor(id, occupation, enPassant, el){
@@ -5,6 +20,15 @@ class Square{
         this.occupation = occupation;
         this.enPassant = enPassant;
         this.el = el;
+    }
+
+    setSprite(){
+        if(this.occupation == 0){
+            this.el.innerHTML = "";
+        }
+        else{
+            this.el.innerHTML = "<img src=" + spriteDictionary[this.occupation] + ">"
+        }
     }
 }
 
