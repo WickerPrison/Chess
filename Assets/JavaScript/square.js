@@ -12,4 +12,5 @@ function generateBoard () {
         var id  = target.getAttribute('id');
         var create = new Square(id, '0', false);
     };
+    return squares;
 }
