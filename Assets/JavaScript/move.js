@@ -86,10 +86,11 @@ function parseCoords(coords){
         return id;
     } else{
         //IMPORTANT: this return case for if the coordinate provided is not a square can be null or false. up to the group I guess.
-        throw new console.error('Invalid input for function parseCoords');
+        return null;
     }
 }
 function checkSquare(id){
+    if(typeof id != null){
 
         //I've never used .filter before. I expect a problem here at some point
         var targetSquare = board.filter(function(elem,index){
@@ -99,4 +100,5 @@ function checkSquare(id){
         var occupation = targetSquare.occupation;
         console.log(occupation);
         return occupation;
+    }
 }
