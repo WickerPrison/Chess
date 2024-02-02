@@ -24,53 +24,43 @@ function getCoordinates(id) {
 function traverseFrom(direction, coords) {
     var letterNum = coords[0];
     var num = coords[1];
-    if(direction === "u"){
-        num++;
-        coords[1] = num;
-        return coords;
-    }
-    else if(direction === "d"){
-        num--;
-        coords[1] = num;
-        return coords;
-    }
-    else if(direction === "l"){
-        letterNum--;
-        coords[0] =letterNum;
-        return coords;
-    }
-    else if(direction === "r"){
-        letterNum++;
-        coords[0] =letterNum;
-        return coords;
-    }
-    //NOTE: I am almost positive that Js is not gonna like the recursion, but if it does work, this should make traversing one square in any direction possible, and allow for chain calls with knights in mind.
-    else if(direction === "ur"){
-        coords = traverseFrom('u', coords);
-        coords = traverseFrom('r', coords);
-        return coords;
 
+    switch (direction){
+        case "u":
+            num++;
+            coords[1] = num;
+            return coords;
+        case "d":
+            num--;
+            coords[1] = num;
+            return coords;
+        case "l":
+            letterNum--;
+            coords[0] =letterNum;
+            return coords;
+        case "r":
+            letterNum++;
+            coords[0] =letterNum;
+            return coords;
+        case "ur":
+            coords = traverseFrom('u', coords);
+            coords = traverseFrom('r', coords);
+            return coords;
+        case "ul":
+            coords = traverseFrom('u', coords);
+            coords = traverseFrom('l', coords);
+            return coords;
+        case "dr":
+            coords = traverseFrom('d', coords);
+            coords = traverseFrom('r', coords);
+            return coords;
+        case "dl":
+            coords = traverseFrom('d', coords);
+            coords = traverseFrom('l', coords);
+            return coords;
+        default:
+            throw new console.error("invalid input in function traverseFrom");
     }
-    else if(direction === "ul"){
-        coords = traverseFrom('u', coords);
-        coords = traverseFrom('l', coords);
-        return coords;
-    }
-     else if(direction === "dr"){
-        coords = traverseFrom('d', coords);
-        coords = traverseFrom('r', coords);
-        return coords;
-    }
-    else if(direction === "dl"){
-        coords = traverseFrom('d', coords);
-        coords = traverseFrom('l', coords);
-        return coords;
-    } else{
-        throw new console.error("invalid input in function traverseFrom");
-    }
-
-
-
 }
 
 //takes coordinates and parses them to an id. Then grabs obj by id and checks the occupation value, and returns it. 
