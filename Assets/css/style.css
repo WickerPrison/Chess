@@ -43,3 +43,10 @@ a {
     background-color: darkgrey; 
 }
   
+.red {
+    color: red;
+}
+
+footer {
+    margin-top: 45%;
+}
