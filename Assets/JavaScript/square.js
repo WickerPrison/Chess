@@ -27,8 +27,14 @@ class Square{
             this.el.innerHTML = "";
         }
         else{
-            console.log(this.occupation);
             this.el.innerHTML = "<img src=" + spriteDictionary[this.occupation] + ">"
+        }
+    }
+
+    getClicked(event){
+        var square = event.target.square;
+        if(typeof square.occupation == "string" && square.occupation == square.occupation.toUpperCase()){
+            square.el.style.backgroundColor = "Green";
         }
     }
 }
@@ -40,6 +46,8 @@ function generateBoard () {
         var target = squares[i];
         var id  = target.getAttribute('id');
         var create = new Square(id, '0', false, target);
+        target.square = create;
+        target.addEventListener("click", create.getClicked);
         board.push(create);
     };
 
