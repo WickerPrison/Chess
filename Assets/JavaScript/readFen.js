@@ -1,4 +1,4 @@
-
+// this function reads a given fen string and extracts all the relevant information 
 function readFen(fenString){
     var fenArray = fenString.split(" ");
     fenString = fenArray[0];

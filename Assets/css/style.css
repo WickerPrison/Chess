@@ -28,6 +28,8 @@ body {
     border-color: darkslategrey;
 }
 
+/* this just prevents the picture of the piece from being clicked on */
+/* we only want to click on the square itself */
 img{
     pointer-events: none;
 }
