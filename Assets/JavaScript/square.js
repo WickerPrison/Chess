@@ -39,11 +39,14 @@ class Square{
         // if it is not the players turn nothing happens so the method ends early
         if(gameState != GameState.PLAYERTURN) return;
 
-        // the previously selected square is unselected
+        // the previously selected square is unselected and all squares are set to not be moveable
         var square = event.target.square;
         if(selectedSquare != null){
             selectedSquare.el.style.backgroundColor = Colors.DEFAULT;
             selectedSquare = null;
+        }
+        for(var i = 0; i < board.length; i++){
+            board[i].setCanMoveTo(false);
         }
 
         // if the square has a white piece then the square is selected

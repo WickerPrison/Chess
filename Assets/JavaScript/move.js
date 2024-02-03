@@ -11,15 +11,9 @@ function highlightMovableSquares(square){
     }
 
     var startingCoords = getCoordinates(square.id);
-    var nextSpace = traverseFrom("u", startingCoords);
-    nextSpace = getSquare(nextSpace);
-    nextSpace.setCanMoveTo(true);
-}
-
-
-function getSquare(coords){
-    var index = coords[0] * 8 + coords[1];
-    return board[index];
+    var nextCoords = traverseFrom("u", startingCoords);
+    var nextSquare = document.getElementById(parseCoords(nextCoords)).square;
+    nextSquare.setCanMoveTo(true);
 }
 
 
