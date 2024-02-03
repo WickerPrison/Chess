@@ -20,7 +20,7 @@ function readFen(fenString){
             // it tests if the value in the fen string is a number or not
             if(/^\d+$/.test(row[j])){
                 for(var k = 0; k < row[j]; k++){
-                    finalRow.push(0);
+                    finalRow.push("0");
                 }
             }
             else{

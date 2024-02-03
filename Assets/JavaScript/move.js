@@ -3,6 +3,13 @@
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 
+function movePiece(fromSquare, toSquare){
+    toSquare.occupation = fromSquare.occupation;
+    toSquare.setSprite();
+    fromSquare.occupation = "0";
+    fromSquare.setSprite();
+}
+
 // this function determines which squares can be moved to and tells the squares. It takes a Square class as an input
 // for now this function will just have every piece move forward one square
 function highlightMovableSquares(square){
@@ -86,7 +93,6 @@ function parseCoords(coords){
         letter = alphabet[coords[0]]
         num = coords[1];
         id = `${letter}${num}`
-        console.log(id);
         return id;
     } else{
         //IMPORTANT: this return case for if the coordinate provided is not a square can be null or false. up to the group I guess.

@@ -26,7 +26,7 @@ class Square{
 
     // this method sets the sprite on the board based on the occupation variable
     setSprite(){
-        if(this.occupation == 0){
+        if(this.occupation == "0"){
             this.el.innerHTML = this.id;
         }
         else{
@@ -39,18 +39,19 @@ class Square{
         // if it is not the players turn nothing happens so the method ends early
         if(gameState != GameState.PLAYERTURN) return;
 
-        // the previously selected square is unselected and all squares are set to not be moveable
         var square = event.target.square;
-        if(selectedSquare != null){
-            selectedSquare.el.style.backgroundColor = Colors.DEFAULT;
-            selectedSquare = null;
-        }
-        for(var i = 0; i < board.length; i++){
-            board[i].setCanMoveTo(false);
+
+        // if square can be moved to then move to that square
+        if(square.canMoveTo){
+            movePiece(selectedSquare, square);
+            clearAllSquares();
+            return;
         }
 
+        clearAllSquares();
+
         // if the square has a white piece then the square is selected
-        if(typeof square.occupation == "string" && square.occupation == square.occupation.toUpperCase()){
+        if(square.occupation != square.occupation.toLowerCase()){
             selectedSquare = square;
             square.el.style.backgroundColor = Colors.SELECTED;
             highlightMovableSquares(selectedSquare);
@@ -84,4 +85,15 @@ function generateBoard () {
     };
 
     return board;
+}
+
+
+function clearAllSquares(){
+    if(selectedSquare != null){
+        selectedSquare.el.style.backgroundColor = Colors.DEFAULT;
+        selectedSquare = null;
+    }
+    for(var i = 0; i < board.length; i++){
+        board[i].setCanMoveTo(false);
+    }
 }
