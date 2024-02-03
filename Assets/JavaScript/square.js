@@ -32,11 +32,15 @@ class Square{
     }
 
     getClicked(event){
+        if(gameState != GameState.PLAYERTURN) return;
+
         var square = event.target.square;
+        if(selectedSquare != null){
+            selectedSquare.el.style.backgroundColor = "lightblue";
+            selectedSquare = null;
+        }
+
         if(typeof square.occupation == "string" && square.occupation == square.occupation.toUpperCase()){
-            if(selectedSquare != null){
-                selectedSquare.el.style.backgroundColor = "lightblue";
-            }
             selectedSquare = square;
             square.el.style.backgroundColor = "Green";
         }

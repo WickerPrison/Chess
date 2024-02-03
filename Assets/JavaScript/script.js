@@ -10,6 +10,13 @@ var fenArray = readFen(initialBoardFenString);
 
 var selectedSquare;
 
+const GameState = {
+    PLAYERTURN: "PLAYERTURN",
+    STOCKFISHTURN: "STOCKFISHTURN",
+}
+
+var gameState = GameState.PLAYERTURN;
+
 for(var i = 0; i < 8; i++){
     for(var j=0; j < 8; j++){
         board[i * 8 + j].occupation = fenArray[i][j];
