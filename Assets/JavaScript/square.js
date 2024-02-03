@@ -1,5 +1,5 @@
 var spriteDictionary = {
-    "r": "./Assets/Sprites/blacRook.svg",
+    "r": "./Assets/Sprites/blackRook.svg",
     "R": "./Assets/Sprites/whiteRook.svg",
     "n": "./Assets/Sprites/blackKnight.svg",
     "N": "./Assets/Sprites/whiteKnight.svg",
@@ -27,6 +27,7 @@ class Square{
             this.el.innerHTML = "";
         }
         else{
+            console.log(this.occupation);
             this.el.innerHTML = "<img src=" + spriteDictionary[this.occupation] + ">"
         }
     }
@@ -41,5 +42,6 @@ function generateBoard () {
         var create = new Square(id, '0', false, target);
         board.push(create);
     };
+
     return board;
 }

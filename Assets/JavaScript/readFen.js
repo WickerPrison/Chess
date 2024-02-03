@@ -1,6 +1,6 @@
 
 function readFen(fenString){
-    var fenArray = split(" ");
+    var fenArray = fenString.split(" ");
     fenString = fenArray[0];
     var whoseTurn = fenArray[1];
     var castlesAvailable = fenArray[2];
@@ -12,7 +12,22 @@ function readFen(fenString){
 
     finalArray = [];
     for(var i = 0; i < ranks.length; i++){
-        finalArray.push(ranks[i].split(""));
+        var row = ranks[i].split("");
+        var finalRow = [];
+        for(var j = 0; j < row.length; j++){
+
+            // this gibberish is called regex, its basically black magic, but it works
+            // it tests if the value in the fen string is a number or not
+            if(/^\d+$/.test(row[j])){
+                for(var k = 0; k < row[j]; k++){
+                    finalRow.push(0);
+                }
+            }
+            else{
+                finalRow.push(row[j]);
+            }
+        }
+        finalArray.push(finalRow);
     }
 
     return finalArray;
