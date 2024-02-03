@@ -45,6 +45,7 @@ class Square{
         if(square.canMoveTo){
             movePiece(selectedSquare, square);
             clearAllSquares();
+            console.log(writeFen());
             return;
         }
 

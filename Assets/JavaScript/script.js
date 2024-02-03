@@ -4,8 +4,15 @@ var turnsNum = 0;
 // this tracks the number of turns since a piece was taken or a pawn has advanced. At 50 the game ends in a draw
 var turnsSinceTakeOrAdvance = 0;
 
+// this string tracks which castles are still legal
+var castlesAvailable;
+
+// this tracks which square if any an en passant move is legal
+var enPassantSquare;
+
 // this variable tracks which square is currently being selected
 var selectedSquare;
+
 
 // these are basically a poor man's enums. All they really do is let us store strings in a way that we don't have to type it out every time.
 const Colors = {

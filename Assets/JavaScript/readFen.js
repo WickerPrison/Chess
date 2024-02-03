@@ -2,9 +2,8 @@
 function readFen(fenString){
     var fenArray = fenString.split(" ");
     fenString = fenArray[0];
-    var whoseTurn = fenArray[1];
-    var castlesAvailable = fenArray[2];
-    var enPassantSquare = fenArray[3];
+    castlesAvailable = fenArray[2];
+    enPassantSquare = fenArray[3];
     turnsSinceTakeOrAdvance = fenArray[4];
     turnsNum = fenArray[5];
 
@@ -31,4 +30,51 @@ function readFen(fenString){
     }
 
     return finalArray;
+}
+
+// this function looks at the current squares and writes a fen string
+function writeFen(){
+    var fenString = "";
+
+    // this loops through the squares and builds the main part of the fen string
+    for(var i = 0; i < 8; i++){
+        var emptySpaces = 0;
+        for(var j = 0; j < 8; j++){
+            if(board[i * 8 + j].occupation == 0){
+                emptySpaces++;
+            }
+
+            if((board[i * 8 + j].occupation != 0 || j == 7) && emptySpaces > 0){
+                fenString += emptySpaces;
+                emptySpaces = 0;
+            }
+
+            if(board[i * 8 + j].occupation != 0){
+                fenString += board[i * 8 + j].occupation;
+            }
+        }
+
+        if(i < 7){
+            fenString += "/";
+        }
+    }
+
+    // it will always be black's turn when we send a fen string to stockfish
+    fenString += " b ";
+
+    fenString += castlesAvailable;
+
+    fenString += " ";
+
+    fenString += enPassantSquare;
+
+    fenString += " ";
+    
+    fenString += turnsSinceTakeOrAdvance;
+
+    fenString += " ";
+
+    fenString += turnsNum;
+
+    return fenString;
 }
