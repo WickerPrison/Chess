@@ -2,7 +2,7 @@
 
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
-
+// this is the function that actually moves the pieces
 function movePiece(fromSquare, toSquare){
     toSquare.occupation = fromSquare.occupation;
     toSquare.setSprite();
