@@ -1,7 +1,28 @@
 //TODO movement logic and functions for pieces
 
-var board = generateBoard();
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+
+function movePiece(fromSquare, toSquare){
+    toSquare.occupation = fromSquare.occupation;
+    toSquare.setSprite();
+    fromSquare.occupation = "0";
+    fromSquare.setSprite();
+}
+
+// this function determines which squares can be moved to and tells the squares. It takes a Square class as an input
+// for now this function will just have every piece move forward one square
+function highlightMovableSquares(square){
+    for(var i = 0; i < board.length; i++){
+        board[i].setCanMoveTo(false);
+    }
+
+    var startingCoords = getCoordinates(square.id);
+    var nextCoords = traverseFrom("u", startingCoords);
+    var nextSquare = document.getElementById(parseCoords(nextCoords)).square;
+    nextSquare.setCanMoveTo(true);
+}
+
 
 //used to turn an id into coordinates for traversing the board. 
 //IMPORTANT
@@ -72,13 +93,13 @@ function parseCoords(coords){
         letter = alphabet[coords[0]]
         num = coords[1];
         id = `${letter}${num}`
-        console.log(id);
         return id;
     } else{
         //IMPORTANT: this return case for if the coordinate provided is not a square can be null or false. up to the group I guess.
         return null;
     }
 }
+
 function checkSquare(id){
     if(typeof id != null){
 
