@@ -1,0 +1,28 @@
+:root{
+   --spaceColor: black;
+   --spaceColorOpposite: white; 
+   background-color: grey;
+}
+
+body {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    margin: 4.5rem;
+
+}
+
+.board {
+    border-radius: .5rem;
+    display: grid;
+    grid-template-columns: repeat(8, 4.5rem);
+    grid-template-rows: repeat(8, 4.5rem);
+    background-color: lightblue;
+    box-shadow: 1rem 1rem 1rem darkslategrey;
+}
+
+.spaces {
+    padding: .2rem;
+    border-width: .1rem;
+    border-color: darkslategrey;
+}
