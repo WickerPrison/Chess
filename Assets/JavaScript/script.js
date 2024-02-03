@@ -7,7 +7,13 @@ var turnsSinceTakeOrAdvance = 0;
 // this variable tracks which square is currently being selected
 var selectedSquare;
 
-// this is basically a poor man's enum. All it really does is let us store strings in a way that we don't have to type it out every time.
+// these are basically a poor man's enums. All they really do is let us store strings in a way that we don't have to type it out every time.
+const Colors = {
+    DEFAULT: "lightblue",
+    SELECTED: "Green",
+    CANMOVETO: "lightgreen"
+}
+
 const GameState = {
     PLAYERTURN: "PLAYERTURN",
     STOCKFISHTURN: "STOCKFISHTURN",

@@ -16,20 +16,21 @@ var spriteDictionary = {
 
 // Each square on the board will have a copy of this class. It contains variables and methods the squares will need
 class Square{
-    constructor(id, occupation, enPassant, el){
+    constructor(id, occupation, enPassant, el, canMoveTo){
         this.id = id;
         this.occupation = occupation;
         this.enPassant = enPassant;
         this.el = el;
+        this.canMoveTo = false;
     }
 
     // this method sets the sprite on the board based on the occupation variable
     setSprite(){
         if(this.occupation == 0){
-            this.el.innerHTML = "";
+            this.el.innerHTML = this.id;
         }
         else{
-            this.el.innerHTML = "<img src=" + spriteDictionary[this.occupation] + ">"
+            this.el.innerHTML = this.id + "<img src=" + spriteDictionary[this.occupation] + ">"
         }
     }
 
@@ -41,14 +42,27 @@ class Square{
         // the previously selected square is unselected
         var square = event.target.square;
         if(selectedSquare != null){
-            selectedSquare.el.style.backgroundColor = "lightblue";
+            selectedSquare.el.style.backgroundColor = Colors.DEFAULT;
             selectedSquare = null;
         }
 
         // if the square has a white piece then the square is selected
         if(typeof square.occupation == "string" && square.occupation == square.occupation.toUpperCase()){
             selectedSquare = square;
-            square.el.style.backgroundColor = "Green";
+            square.el.style.backgroundColor = Colors.SELECTED;
+            highlightMovableSquares(selectedSquare);
+        }
+    }
+
+    // this function allows us to tell a square whether or not it can be moved to. It should take a bool as an input
+    setCanMoveTo(canMoveToInput){
+        if(this == selectedSquare) return;
+        this.canMoveTo = canMoveToInput;
+        if(this.canMoveTo){
+            this.el.style.backgroundColor = Colors.CANMOVETO;
+        }
+        else{
+            this.el.style.backgroundColor = Colors.DEFAULT;
         }
     }
 }
