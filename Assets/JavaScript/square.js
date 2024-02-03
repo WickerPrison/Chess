@@ -34,6 +34,10 @@ class Square{
     getClicked(event){
         var square = event.target.square;
         if(typeof square.occupation == "string" && square.occupation == square.occupation.toUpperCase()){
+            if(selectedSquare != null){
+                selectedSquare.el.style.backgroundColor = "lightblue";
+            }
+            selectedSquare = square;
             square.el.style.backgroundColor = "Green";
         }
     }
