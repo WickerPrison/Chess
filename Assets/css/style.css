@@ -1,6 +1,11 @@
 
 :root{
    background-color: grey;
+   --normalBorderWidth: 0.1rem;
+   --highlightedBorderWidth: thick;
+   --defaultBorderColor: darkslategrey;
+   --selectedBorderColor: green;
+   --canMoveToBorderColor: white;
 }
 
 body {
@@ -23,7 +28,7 @@ body {
 
 .spaces {
     padding: .2rem;
-    border-width: .1rem;
+    border-width: var(--normalBorderWidth);
     border-color: darkslategrey;
 }
 

@@ -16,9 +16,14 @@ var selectedSquare;
 
 // these are basically a poor man's enums. All they really do is let us store strings in a way that we don't have to type it out every time.
 const Colors = {
-    DEFAULT: "lightblue",
-    SELECTED: "Green",
-    CANMOVETO: "lightgreen"
+    DEFAULT: "var(--defaultBorderColor)",
+    SELECTED: "var(--selectedBorderColor)",
+    CANMOVETO: "var(--canMoveToBorderColor)"
+}
+
+const BorderWidths = {
+    DEFAULT: "var(--normalBorderWidth)",
+    THICK: "var(--highlightedBorderWidth)"
 }
 
 const GameState = {
