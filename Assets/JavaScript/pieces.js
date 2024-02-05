@@ -1,12 +1,23 @@
 //pieces logic below
+function getPiece(fenID){
+    //will eventually have cases for each piece. Given a FenID grabs the appropriate piece class.
+    switch(fenID){
+        case 'p':
+        case 'P':
+            var piece = new pawn(fenID);
+            return piece;
+        //other pieces here
+        default:
+            return;
+    }
+}
 
 
 
 
 class pawn  {
     constructor(fenID){
-        this.color = color;
-        if(color == 'p'){
+        if(fenID== 'P'){
 
             this.color = 'white';
         }
@@ -14,17 +25,22 @@ class pawn  {
             this.color = 'black'
         }
     }
-    //gets and displays all available pawn moves given a square id
-    getMoves(location) {
+    //gets and displays all available pawn moves given a square
+    getMoves(startSquare) {
+        console.log(startSquare);
+        var location = startSquare.id;
         var coords = getCoordinates(location);
-        if(color == 'white'){
+        console.log("coords" + coords)
+        if(this.color == 'white'){
             var oneUp = traverseFrom("u", coords);
+            console.log(oneUp);
             var regularMove= document.getElementById(parseCoords(oneUp)).square;
             regularMove.setCanMoveTo(true);
             this.checkDiagonals(coords);
             //if it has not moved it can move one or two squares forward
-            if(coords[1] === 2){
+            if(coords[1] == '2'){
                 var twoUp = traverseFrom("u", oneUp);
+            console.log(true);
                 var firstAllowed = document.getElementById(parseCoords(twoUp)).square;
                 firstAllowed.setCanMoveTo(true);
             }
@@ -43,31 +59,19 @@ class pawn  {
 
         var diagLeft = traverseFrom("ul", coords);
         var targetLeft= parseCoords(diagLeft);
-        var leftSquare = getPiece(targetRight);
+        var leftSquare = getPiece(targetLeft);
 
         //checks right
-        if((rightSquare != undefined && rightSquare.color !=this.color)){
+        if((rightSquare != undefined && rightSquare.color != this.color)){
             var captureRight= document.getElementById(parseCoords(diagRight)).square;
             captureRight.setCanMoveTo(true);
         }
-        checksLeft
-        if(targetLeft != 0 && targetLeft != targetLeft.toLowerCase()){
-            var captureLeft= document.getElementById(parseCoords(diagRight)).square;
+        //checksLeft
+        if(leftSquare != undefined && leftSquare.color != this.color){
+            var captureLeft= document.getElementById(parseCoords(diagLeft)).square;
             captureLeft.setCanMoveTo(true);
         }
 
     }
 }
 
-//will eventually have cases for each of them
-function getPiece(fenID){
-    switch(fenID){
-        case 'p':
-        case 'P':
-            var piece = new pawn(fenID);
-            return piece;
-        //other pieces here
-        default:
-            return;
-    }
-}

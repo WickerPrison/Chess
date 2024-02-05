@@ -14,6 +14,7 @@ function movePiece(fromSquare, toSquare){
 // for now this function will just have every piece move forward one square
 function highlightMovableSquares(startSquare){
     var occupation = startSquare.occupation;
+    console.log(occupation);
     if(occupation == '0'){
         return;
     } else{
@@ -21,7 +22,7 @@ function highlightMovableSquares(startSquare){
         for(var i = 0; i < board.length; i++){
             board[i].setCanMoveTo(false);
         }
-        var piece=getPiece(occupation);
+        var piece=getPiece(startSquare.occupation);
         piece.getMoves(startSquare);
 
     }
@@ -74,21 +75,21 @@ function traverseFrom(direction, coords) {
             coords[0] =letterNum;
             return coords;
         case "ur":
-            coords = traverseFrom('u', coords);
-            coords = traverseFrom('r', coords);
-            return coords;
+            var newCoords = traverseFrom('u', coords);
+            newCoords= traverseFrom('r', newCoords);
+            return newCoords;
         case "ul":
-            coords = traverseFrom('u', coords);
-            coords = traverseFrom('l', coords);
-            return coords;
+            var newCoords = traverseFrom('u', coords);
+            newCoords = traverseFrom('l', newCoords);
+            return newCoords;
         case "dr":
-            coords = traverseFrom('d', coords);
-            coords = traverseFrom('r', coords);
-            return coords;
+            var newCoords = traverseFrom('d', coords);
+            newCoords = traverseFrom('r', newCoords);
+            return newCoords;
         case "dl":
-            coords = traverseFrom('d', coords);
-            coords = traverseFrom('l', coords);
-            return coords;
+            var newCoords = traverseFrom('d', coords);
+            newCoords = traverseFrom('l', newCoords);
+            return newCoords;
         default:
             throw new console.error("invalid input in function traverseFrom");
     }
