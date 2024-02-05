@@ -1,7 +1,5 @@
 
 :root{
-   --spaceColor: black;
-   --spaceColorOpposite: white; 
    background-color: grey;
 }
 
@@ -19,6 +17,7 @@ body {
     grid-template-columns: repeat(8, 4.5rem);
     grid-template-rows: repeat(8, 4.5rem);
     background-color: lightblue;
+    color: #36454F; 
     box-shadow: 1rem 1rem 1rem darkslategrey;
 }
 
@@ -26,6 +25,11 @@ body {
     padding: .2rem;
     border-width: .1rem;
     border-color: darkslategrey;
+}
+
+.darker {
+    background-color: #36454F;
+    color: lightblue;
 }
 
 /* this just prevents the picture of the piece from being clicked on */
