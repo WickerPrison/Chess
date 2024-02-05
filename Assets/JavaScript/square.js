@@ -55,7 +55,8 @@ class Square{
         // if the square has a white piece then the square is selected
         if(square.occupation != square.occupation.toLowerCase()){
             selectedSquare = square;
-            square.el.style.backgroundColor = Colors.SELECTED;
+            square.el.style.borderColor = Colors.SELECTED;
+            square.el.style.borderWidth = BorderWidths.THICK;
             highlightMovableSquares(selectedSquare);
         }
     }
@@ -65,10 +66,12 @@ class Square{
         if(this == selectedSquare) return;
         this.canMoveTo = canMoveToInput;
         if(this.canMoveTo){
-            this.el.style.backgroundColor = Colors.CANMOVETO;
+            this.el.style.borderColor = Colors.CANMOVETO;
+            this.el.style.borderWidth = BorderWidths.THICK;
         }
         else{
-            this.el.style.backgroundColor = Colors.DEFAULT;
+            this.el.style.borderColor = Colors.DEFAULT;
+            this.el.style.borderWidth = BorderWidths.DEFAULT;
         }
     }
 }
@@ -92,7 +95,8 @@ function generateBoard () {
 
 function clearAllSquares(){
     if(selectedSquare != null){
-        selectedSquare.el.style.backgroundColor = Colors.DEFAULT;
+        selectedSquare.el.style.borderColor = Colors.DEFAULT;
+        selectedSquare.el.style.borderWidth = BorderWidths.DEFAULT;
         selectedSquare = null;
     }
     for(var i = 0; i < board.length; i++){
