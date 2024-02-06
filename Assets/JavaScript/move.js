@@ -12,15 +12,26 @@ function movePiece(fromSquare, toSquare){
 
 // this function determines which squares can be moved to and tells the squares. It takes a Square class as an input
 // for now this function will just have every piece move forward one square
-function highlightMovableSquares(square){
-    for(var i = 0; i < board.length; i++){
-        board[i].setCanMoveTo(false);
+function highlightMovableSquares(startSquare){
+    var occupation = startSquare.occupation;
+    console.log(occupation);
+    if(occupation == '0'){
+        return;
+    } else{
+
+        for(var i = 0; i < board.length; i++){
+            board[i].setCanMoveTo(false);
+        }
+        var piece=getPiece(startSquare.occupation);
+        piece.getMoves(startSquare);
+
     }
 
-    var startingCoords = getCoordinates(square.id);
-    var nextCoords = traverseFrom("u", startingCoords);
-    var nextSquare = document.getElementById(parseCoords(nextCoords)).square;
-    nextSquare.setCanMoveTo(true);
+    //IMPORTANT: leaving the code for each piece moving forward only one hear for troubleshooting. piece logic will go here.
+    // var startingCoords = getCoordinates(square.id);
+    // var nextCoords = traverseFrom("u", startingCoords);
+    // var nextSquare = document.getElementById(parseCoords(nextCoords)).square;
+    // nextSquare.setCanMoveTo(true);
 }
 
 
@@ -89,7 +100,7 @@ function parseCoords(coords){
     var num;
     var letter;
     var id;
-    if(coords[0]< 8 && coords[0]>=0 && coords[1]<= 8 && coords[1]>0){
+    if(coords[0]<= 7 && coords[0]>=0 && coords[1]<= 8 && coords[1]>0){
         letter = alphabet[coords[0]]
         num = coords[1];
         id = `${letter}${num}`
@@ -101,15 +112,18 @@ function parseCoords(coords){
 }
 
 function checkSquare(id){
-    if(typeof id != null){
+    if(id != null){
 
         //I've never used .filter before. I expect a problem here at some point
-        var targetSquare = board.filter(function(elem,index){
-            console.log('works');
-            return elem.id == id;
-        });
+        var target = board.findIndex( function(element){
+           return element.id === id;
+        })
+        var targetSquare = board[target];
         var occupation = targetSquare.occupation;
         console.log(occupation);
         return occupation;
+    }
+    else{
+        return null;
     }
 }
