@@ -1,9 +1,8 @@
 
 :root{
-   background-color: grey;
    --normalBorderWidth: 0.1rem;
    --highlightedBorderWidth: thick;
-   --defaultBorderColor: darkslategrey;
+   --defaultBorderColor: black;
    --selectedBorderColor: green;
    --canMoveToBorderColor: white;
 }
@@ -13,28 +12,29 @@ body {
     justify-content: center;
     align-content: center;
     margin: 4.5rem;
-
+    padding: 2rem;
 }
 
 .board {
+    padding: 1rem;
     border-radius: .5rem;
     display: grid;
     grid-template-columns: repeat(8, 4.5rem);
     grid-template-rows: repeat(8, 4.5rem);
-    background-color: lightblue;
-    color: #36454F; 
-    box-shadow: 1rem 1rem 1rem darkslategrey;
+    background-color: #bbbbbb;
+    color: rgb(22 101 52); 
+    box-shadow: 0 0 2rem #444444;
 }
 
 .spaces {
     padding: .2rem;
     border-width: var(--normalBorderWidth);
-    border-color: darkslategrey;
+    border-color: black;
 }
 
 .darker {
-    background-color: #36454F;
-    color: lightblue;
+    background-color: rgb(22 101 52);
+    color: #bbbbbb;
 }
 
 /* this just prevents the picture of the piece from being clicked on */
