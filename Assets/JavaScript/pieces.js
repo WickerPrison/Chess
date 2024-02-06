@@ -202,3 +202,28 @@ class queen {
         }
     }
 }
+
+
+class king  {
+    constructor(fenID){
+        if(fenID== 'K'){
+
+            this.color = 'white';
+        }
+        else{
+            this.color = 'black'
+        }
+    }
+}
+
+class knight  {
+    constructor(fenID){
+        if(fenID== 'N'){
+
+            this.color = 'white';
+        }
+        else{
+            this.color = 'black'
+        }
+    }
+}
