@@ -9,6 +9,27 @@ function movePiece(fromSquare, toSquare){
     fromSquare.occupation = "0";
     fromSquare.setSprite();
 
+    if(castlesAvailable == "") return;
+
+    if(fromSquare.id == "e8"){
+        if(toSquare.id == "c8" && castlesAvailable.includes("q")){
+            rookSquare = document.getElementById("a8").square;
+            d8Square = document.getElementById("d8").square;
+            rookSquare.occupation = "0";
+            rookSquare.setSprite();
+            d8Square.occupation = "r";
+            d8Square.setSprite();
+        }
+        else if(toSquare.id == "g8" && castlesAvailable.includes("k")){
+            rookSquare = document.getElementById("h8").square;
+            f8Square = document.getElementById("f8").square;
+            rookSquare.occupation = "0";
+            rookSquare.setSprite();
+            f8Square.occupation = "r";
+            f8Square.setSprite();
+        }
+    }
+
     // this updates the fen to keep track of what castles are still legal
     switch(fromSquare.id){
         case "a8":
@@ -32,6 +53,22 @@ function movePiece(fromSquare, toSquare){
             castlesAvailable = castlesAvailable.replace("K", "");
             break;
     }
+    switch(toSquare.id){
+        case "a8":
+            castlesAvailable = castlesAvailable.replace("q", "");
+            break;
+        case "h8":
+            castlesAvailable = castlesAvailable.replace("k", "");
+            break;
+        case "a1":
+            castlesAvailable = castlesAvailable.replace("Q", "");
+            break;
+        case "h1":
+            castlesAvailable = castlesAvailable.replace("K", "");
+            break;
+    }
+
+    console.log(castlesAvailable);
 }
 
 // this function determines which squares can be moved to and tells the squares. It takes a Square class as an input

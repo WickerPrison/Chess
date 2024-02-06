@@ -74,7 +74,12 @@ function writeFen(blackTurn = true){
         fenString += " w ";
     }
 
-    fenString += castlesAvailable;
+    if(castlesAvailable != ""){
+        fenString += castlesAvailable;
+    }
+    else{
+        fenString += "-"
+    }
 
     fenString += " ";
 

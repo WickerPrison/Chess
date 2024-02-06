@@ -11,7 +11,7 @@ function getStockfishMove(inputFen){
         return response.json();
     })
     .then(function(data){
-
+        console.log(data.data);
         if(data.data == ""){
             console.log("cannot move into check");
             readFen(startTurnPosition);
@@ -29,7 +29,6 @@ function getStockfishMove(inputFen){
         var initialSquare = document.getElementById(parseCoords(initialCoords)).square;
         var newSquare = document.getElementById(parseCoords(newCoords)).square;
         movePiece(initialSquare, newSquare);
-
         endTurn(writeFen(false));
     })
 }
@@ -40,6 +39,7 @@ function endTurn(fenString){
         return response.json();
     })
     .then(function(data){
+        console.log(castlesAvailable);
         if(data.data == "Game over in position."){
             if(gameState == GameState.WAITINGFORRESPONSE){
                 gameState = GameState.WHITEWINS;
