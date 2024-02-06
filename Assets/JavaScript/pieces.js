@@ -27,7 +27,6 @@ class pawn  {
     }
     //gets and displays all available pawn moves given a square
     getMoves(startSquare) {
-        console.log(startSquare);
         var location = startSquare.id;
         var coords = getCoordinates(location);
         if(this.color == 'white'){
@@ -64,7 +63,6 @@ class pawn  {
         var coords = getCoordinates(location);
 
         var diagRight = traverseFrom("ur", coords);
-        console.log(parseCoords(diagRight));
         coords = getCoordinates(location);
         var targetRight= checkSquare(parseCoords(diagRight));
         var rightSquare = getPiece(targetRight);
@@ -79,13 +77,11 @@ class pawn  {
         if((rightSquare != undefined && rightSquare != null && rightSquare.color != this.color)){
             var captureRight= document.getElementById(parseCoords(diagRight)).square;
             captureRight.setCanMoveTo(true);
-            console.log('right Checked');
         }
         //checksLeft
         if(leftSquare != undefined && leftSquare != null && leftSquare.color != this.color){
             var captureLeft= document.getElementById(parseCoords(diagLeft)).square;
             captureLeft.setCanMoveTo(true);
-            console.log('left Checked');
         }
 
     }

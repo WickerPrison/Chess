@@ -45,8 +45,8 @@ class Square{
         if(square.canMoveTo){
             movePiece(selectedSquare, square);
             clearAllSquares();
-            gameState = GameState.STOCKFISHTURN;
-            getStockfishMove(writeFen());
+            gameState = GameState.WAITINGFORRESPONSE;
+            endTurn(writeFen());
             return;
         }
 

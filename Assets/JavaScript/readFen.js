@@ -33,7 +33,8 @@ function readFen(fenString){
 }
 
 // this function looks at the current squares and writes a fen string
-function writeFen(){
+// if no parameter is given blackTurn will default to true
+function writeFen(blackTurn = true){
     var fenString = "";
 
     // this loops through the squares and builds the main part of the fen string
@@ -59,8 +60,13 @@ function writeFen(){
         }
     }
 
-    // it will always be black's turn when we send a fen string to stockfish
-    fenString += " b ";
+    // it will always be black's turn when we send a fen string to stockfish unless we are checking for checkmates after stockfish just went
+    if(blackTurn){
+        fenString += " b ";
+    }
+    else{
+        fenString += " w ";
+    }
 
     fenString += castlesAvailable;
 
