@@ -75,21 +75,21 @@ function traverseFrom(direction, coords) {
             coords[0] =letterNum;
             return coords;
         case "ur":
-            var newCoords = traverseFrom('u', coords);
-            newCoords= traverseFrom('r', newCoords);
-            return newCoords;
+            coords = traverseFrom('u', coords);
+            coords = traverseFrom('r', coords);
+            return coords;
         case "ul":
-            var newCoords = traverseFrom('u', coords);
-            newCoords = traverseFrom('l', newCoords);
-            return newCoords;
+            coords = traverseFrom('u', coords);
+            coords = traverseFrom('l', coords);
+            return coords;
         case "dr":
-            var newCoords = traverseFrom('d', coords);
-            newCoords = traverseFrom('r', newCoords);
-            return newCoords;
+            coords = traverseFrom('d', coords);
+            coords = traverseFrom('r', coords);
+            return coords;
         case "dl":
-            var newCoords = traverseFrom('d', coords);
-            newCoords = traverseFrom('l', newCoords);
-            return newCoords;
+            coords = traverseFrom('d', coords);
+            coords = traverseFrom('l', coords);
+            return coords;
         default:
             throw new console.error("invalid input in function traverseFrom");
     }
@@ -100,7 +100,7 @@ function parseCoords(coords){
     var num;
     var letter;
     var id;
-    if(coords[0]< 8 && coords[0]>=0 && coords[1]<= 8 && coords[1]>0){
+    if(coords[0]<= 7 && coords[0]>=0 && coords[1]<= 8 && coords[1]>0){
         letter = alphabet[coords[0]]
         num = coords[1];
         id = `${letter}${num}`
@@ -112,15 +112,18 @@ function parseCoords(coords){
 }
 
 function checkSquare(id){
-    if(typeof id != null){
+    if(id != null){
 
         //I've never used .filter before. I expect a problem here at some point
-        var targetSquare = board.filter(function(elem,index){
-            console.log('works');
-            return elem.id == id;
-        });
+        var target = board.findIndex( function(element){
+           return element.id === id;
+        })
+        var targetSquare = board[target];
         var occupation = targetSquare.occupation;
         console.log(occupation);
         return occupation;
+    }
+    else{
+        return null;
     }
 }

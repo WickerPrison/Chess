@@ -30,20 +30,27 @@ class pawn  {
         console.log(startSquare);
         var location = startSquare.id;
         var coords = getCoordinates(location);
-        console.log("coords" + coords)
         if(this.color == 'white'){
             var oneUp = traverseFrom("u", coords);
-            console.log(oneUp);
-            var regularMove= document.getElementById(parseCoords(oneUp)).square;
-            regularMove.setCanMoveTo(true);
-            this.checkDiagonals(coords);
-            //if it has not moved it can move one or two squares forward
-            if(coords[1] == '2'){
+            coords =getCoordinates(location);
+            var nextOccupation = checkSquare(parseCoords(oneUp));
+            //checks for a piece blocking the regular move
+            if(nextOccupation == '0'){
+
+                var regularMove= document.getElementById(parseCoords(oneUp)).square;
+                regularMove.setCanMoveTo(true);
+
                 var twoUp = traverseFrom("u", oneUp);
-            console.log(true);
-                var firstAllowed = document.getElementById(parseCoords(twoUp)).square;
-                firstAllowed.setCanMoveTo(true);
+                coords = getCoordinates(location);
+                var twoBlocksUp = checkSquare(parseCoords(twoUp));
+
+                //if it has not moved forward and the spot is not taken it can move two
+                if(coords[1] == '2' && twoBlocksUp == '0'){
+                    var firstAllowed = document.getElementById(parseCoords(twoUp)).square;
+                    firstAllowed.setCanMoveTo(true);
+                }
             }
+            this.checkDiagonals(startSquare);
 
         }
         else{
@@ -52,24 +59,33 @@ class pawn  {
 
     }
     //checks diagonals to see if they exist, and occupied by an eneemy peice if they are, the moves are available.
-    checkDiagonals(coords){
+    checkDiagonals(startSquare){
+        var location = startSquare.id;
+        var coords = getCoordinates(location);
+
         var diagRight = traverseFrom("ur", coords);
-        var targetRight= parseCoords(diagRight);
+        console.log(parseCoords(diagRight));
+        coords = getCoordinates(location);
+        var targetRight= checkSquare(parseCoords(diagRight));
         var rightSquare = getPiece(targetRight);
 
-        var diagLeft = traverseFrom("ul", coords);
-        var targetLeft= parseCoords(diagLeft);
-        var leftSquare = getPiece(targetLeft);
 
+        var diagLeft = traverseFrom("ul", coords);
+        coords = getCoordinates(location);
+        var targetLeft= checkSquare(parseCoords(diagLeft));
+        var leftSquare = getPiece(targetLeft);
+        
         //checks right
-        if((rightSquare != undefined && rightSquare.color != this.color)){
+        if((rightSquare != undefined && rightSquare != null && rightSquare.color != this.color)){
             var captureRight= document.getElementById(parseCoords(diagRight)).square;
             captureRight.setCanMoveTo(true);
+            console.log('right Checked');
         }
         //checksLeft
-        if(leftSquare != undefined && leftSquare.color != this.color){
+        if(leftSquare != undefined && leftsquare != null && leftSquare.color != this.color){
             var captureLeft= document.getElementById(parseCoords(diagLeft)).square;
             captureLeft.setCanMoveTo(true);
+            console.log('left Checked');
         }
 
     }
