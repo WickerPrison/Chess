@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess</title>
-    <link rel="stylesheet" type="text/css" href="Assets/css/startPage.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <main id = "startpage">
-        <h1 class = "title"><span class = "red">Not</span>Chess.com</h1>
-        <p>Are you as good as StockFish?</p>
+<body class = "text-white bg-zinc-900 text-center">
+    <main>
+        <h1 class="text-7xl font-bold mt-40 mb-10"><span class = "text-red-600">Not</span>Chess.com</h1>
+        <p class="italic mb-5">Are you as good as StockFish?</p>
         <hr />
-        <a href = "board.html">
-            <button id = "start-btn" >Play</button>    
+        <a class="items-center justify-center flex" href = "board.html">
+            <button class="font-bold bg-red-600 text-3xl py-6 w-1/2 block mx-auto text-center rounded-2xl 
+            cursor-pointer outline-none border-none mt-8 hover:bg-red-700 active:bg-red-900" >Play</button>    
         </a>
     </main>
-    <footer>
+    <footer class="fixed bottom-0 left-0 w-full text-white text-center">
         <p>built by: Jacob Davis, William Morris, Nathan Johnston, Parker Rappleye</p>
     </footer>
 </body>
