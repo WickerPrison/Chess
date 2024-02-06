@@ -11,6 +11,14 @@ function getStockfishMove(inputFen){
         return response.json();
     })
     .then(function(data){
+
+        if(data.data == ""){
+            console.log("cannot move into check");
+            readFen(startTurnPosition);
+            gameState = GameState.PLAYERTURN;
+            return;
+        }
+
         // these lines parse stockfish's output into our coordinate system
         var outputArray = data.data.split(" ");
         var bestMove = outputArray[1].split("");
@@ -51,6 +59,7 @@ function endTurn(fenString){
         }
         else{
             if(gameState == GameState.STOCKFISHTURN){
+                startTurnPosition = writeFen();
                 gameState = GameState.PLAYERTURN;
             }
             if(gameState == GameState.WAITINGFORRESPONSE){

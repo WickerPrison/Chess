@@ -29,7 +29,13 @@ function readFen(fenString){
         finalArray.push(finalRow);
     }
 
-    return finalArray;
+   // this loops through the board array and the output of the readFen function and places all the peices as they should be according to the fen string
+    for(var i = 0; i < 8; i++){
+        for(var j=0; j < 8; j++){
+            board[i * 8 + j].occupation = finalArray[i][j];
+            board[i * 8 + j].setSprite();
+        }
+    }
 }
 
 // this function looks at the current squares and writes a fen string
