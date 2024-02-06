@@ -8,6 +8,30 @@ function movePiece(fromSquare, toSquare){
     toSquare.setSprite();
     fromSquare.occupation = "0";
     fromSquare.setSprite();
+
+    // this updates the fen to keep track of what castles are still legal
+    switch(fromSquare.id){
+        case "a8":
+            castlesAvailable = castlesAvailable.replace("q", "");
+            break;
+        case "h8":
+            castlesAvailable = castlesAvailable.replace("k", "");
+            break;
+        case "e8":
+            castlesAvailable = castlesAvailable.replace("q", "");
+            castlesAvailable = castlesAvailable.replace("k", "");
+            break;
+        case "a1":
+            castlesAvailable = castlesAvailable.replace("Q", "");
+            break;
+        case "h1":
+            castlesAvailable = castlesAvailable.replace("K", "");
+            break;
+        case "e1":
+            castlesAvailable = castlesAvailable.replace("Q", "");
+            castlesAvailable = castlesAvailable.replace("K", "");
+            break;
+    }
 }
 
 // this function determines which squares can be moved to and tells the squares. It takes a Square class as an input

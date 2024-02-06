@@ -214,6 +214,45 @@ class king  {
             this.color = 'black'
         }
     }
+
+    getMoves(startSquare){
+        if(this.color == "white"){
+            this.getOneSpace("u", startSquare);
+            this.getOneSpace("d", startSquare);
+            this.getOneSpace("l", startSquare);
+            this.getOneSpace("r", startSquare);
+            this.getOneSpace("ur", startSquare);
+            this.getOneSpace("ul", startSquare);
+            this.getOneSpace("dr", startSquare);
+            this.getOneSpace("dl", startSquare);
+        }
+        else{
+            //black logic
+        }
+    }
+
+    getOneSpace(direction, startSquare){
+        var location = startSquare.id;
+        var coords = getCoordinates(location);
+
+        var oneStep = traverseFrom(direction, coords);
+        var ID = parseCoords(oneStep);
+
+        if(ID == null) return;
+        
+        var nextOccupation = checkSquare(ID);
+        if(nextOccupation == 0) {
+            var nextSquare = document.getElementById(ID).square;
+            nextSquare.setCanMoveTo(true);
+        } else if(nextOccupation.toLowerCase() == nextOccupation) {
+            var nextSquare = document.getElementById(ID).square;
+            nextSquare.setCanMoveTo(true);
+        }   
+    }
+
+    getCastle(direction){
+
+    }
 }
 
 class knight  {
