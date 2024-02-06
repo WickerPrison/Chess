@@ -104,7 +104,7 @@ class pawn  {
     }
 }
 
-// this function is just what nathan and william wrote but slightly tweaked to be more general
+// this function is just what nathan and william wrote but slightly tweaked to be more generic
 // this can be used to find pieces along any direction so it works for bishops, rooks, and queens
 function getDirection(direction, startSquare){
     var location = startSquare.id;
@@ -203,6 +203,7 @@ class queen {
     }
 }
 
+// this sets up an array of all the squares that must be clear for castling to occur
 var castleSquaresIDs = ["b1", "c1", "d1", "f1", "g1"];
 var castleSquares = [];
 for(var i = 0; i < castleSquaresIDs.length; i++){
@@ -257,6 +258,7 @@ class king  {
         }   
     }
 
+    // this method uses the array set up above to check if the relevant squares are clear and allow castling
     getCastle(){
         if(castlesAvailable == "") return;
 

@@ -11,6 +11,8 @@ function movePiece(fromSquare, toSquare){
 
     if(castlesAvailable == "") return;
 
+    // this if statement moves stockfish's rook if it castles
+    // the code for the player castling is found in Square.getClicked()
     if(fromSquare.id == "e8"){
         if(toSquare.id == "c8" && castlesAvailable.includes("q")){
             rookSquare = document.getElementById("a8").square;

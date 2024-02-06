@@ -42,6 +42,7 @@ class Square{
 
         var square = event.target.square;
 
+        // this moves the rook if clicking on this square would result in castling
         if(square.canCastleTo){
             if(square.id == "g1"){
                 var fromSquare = document.getElementById("h1").square;
