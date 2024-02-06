@@ -67,8 +67,6 @@ function movePiece(fromSquare, toSquare){
             castlesAvailable = castlesAvailable.replace("K", "");
             break;
     }
-
-    console.log(castlesAvailable);
 }
 
 // this function determines which squares can be moved to and tells the squares. It takes a Square class as an input

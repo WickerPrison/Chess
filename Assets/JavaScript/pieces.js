@@ -203,6 +203,12 @@ class queen {
     }
 }
 
+var castleSquaresIDs = ["b1", "c1", "d1", "f1", "g1"];
+var castleSquares = [];
+for(var i = 0; i < castleSquaresIDs.length; i++){
+    var castleSquare = document.getElementById(castleSquaresIDs[i]).square;
+    castleSquares.push(castleSquare);
+}
 
 class king  {
     constructor(fenID){
@@ -225,6 +231,7 @@ class king  {
             this.getOneSpace("ul", startSquare);
             this.getOneSpace("dr", startSquare);
             this.getOneSpace("dl", startSquare);
+            this.getCastle();
         }
         else{
             //black logic
@@ -250,8 +257,36 @@ class king  {
         }   
     }
 
-    getCastle(direction){
+    getCastle(){
+        if(castlesAvailable == "") return;
 
+        if(castlesAvailable.includes("Q")){
+            var queenCastle = true;
+            for(var i = 0; i < 3; i++){
+                if(castleSquares[i].occupation != "0"){
+                    queenCastle = false;
+                    break;
+                }
+            }
+            if(queenCastle){
+                castleSquares[1].setCanMoveTo(true);
+                castleSquares[1].canCastleTo = true;
+            }
+        }
+    
+        if(castlesAvailable.includes("K")){
+            var kingCastle = true;
+            for(var i = 3; i < 5; i++){
+                if(castleSquares[i].occupation != "0"){
+                    kingCastle = false;
+                    break;
+                }
+            }
+            if(kingCastle){
+                castleSquares[4].setCanMoveTo(true);
+                castleSquares[4].canCastleTo = true;
+            } 
+        }
     }
 }
 

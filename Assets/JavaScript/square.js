@@ -22,6 +22,7 @@ class Square{
         this.enPassant = enPassant;
         this.el = el;
         this.canMoveTo = false;
+        this.canCastleTo = false;
     }
 
     // this method sets the sprite on the board based on the occupation variable
@@ -40,6 +41,20 @@ class Square{
         if(gameState != GameState.PLAYERTURN) return;
 
         var square = event.target.square;
+
+        if(square.canCastleTo){
+            if(square.id == "g1"){
+                var fromSquare = document.getElementById("h1").square;
+                var toSquare = document.getElementById("f1").square;
+            }
+            else if (square.id == "c1"){
+                var fromSquare = document.getElementById("a1").square;
+                var toSquare = document.getElementById("d1").square;
+            }
+            castlesAvailable = castlesAvailable.replace("Q", "");
+            castlesAvailable = castlesAvailable.replace("K", "");
+            movePiece(fromSquare, toSquare);
+        }
 
         // if square can be moved to then move to that square
         if(square.canMoveTo){
@@ -101,5 +116,6 @@ function clearAllSquares(){
     }
     for(var i = 0; i < board.length; i++){
         board[i].setCanMoveTo(false);
+        board[i].canCastleTo = false;
     }
 }
