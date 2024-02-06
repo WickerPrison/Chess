@@ -40,9 +40,9 @@ var gameState = GameState.PLAYERTURN;
 var board = generateBoard();
 
 var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-var testFenString = "6q1/8/8/8/8/8/2P2k1K/8 w - - 0 1";
-// var fenArray = readFen(initialBoardFenString);
-var fenArray = readFen(testFenString);
+var testFenString = "7k/8/5P1B/5Q2/4K3/8/2P5/8 w - - 0 1";
+var fenArray = readFen(initialBoardFenString);
+// var fenArray = readFen(testFenString);
 
 // this loops through the board array and the output of the readFen function and places all the peices as they should be according to the fen string
 for(var i = 0; i < 8; i++){

@@ -37,6 +37,16 @@ body {
     color: lightblue;
 }
 
+#end-game{
+    display: none;
+    position: absolute;
+    top: 30%;
+    background-color: black;
+    color: white;
+    padding: 0.2em;
+    font-size: 3em;
+}
+
 /* this just prevents the picture of the piece from being clicked on */
 /* we only want to click on the square itself */
 img{

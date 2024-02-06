@@ -2,6 +2,8 @@ var requestStringStart = "https://stockfish.online/api/stockfish.php?fen=";
 // this variable determines how many moves in advance stockfish looks. Values between 5 and 13 are valid.
 var depth = 13;
 
+var endGame = document.getElementById("end-game");
+
 // this function takes a fen string as an input and moves the black pieces for stockfish
 function getStockfishMove(inputFen){
     fetch(requestStringStart + inputFen + "&depth=" + depth + "&mode=bestmove")
@@ -32,17 +34,20 @@ function endTurn(fenString){
         if(data.data == "Game over in position."){
             if(gameState == GameState.WAITINGFORRESPONSE){
                 gameState = GameState.WHITEWINS;
-                console.log("player wins");
+                endGame.innerText = "White Wins You Filthy Cheater!";
+                endGame.style.display = "block";
             }
             else if (gameState == GameState.STOCKFISHTURN){
                 gameState = GameState.BLACKWINS;
-                console.log("stockfish wins");
+                endGame.innerText = "Black Wins!";
+                endGame.style.display = "block";
             }
             gameOver = true;
         }
         else if(data.data == "bestmove (none)"){
             gameState = GameState.STALEMATE;
-            console.log("stalemate");
+            endGame.innerText = "Stalemate";
+            endGame.style.display = "block";
         }
         else{
             if(gameState == GameState.STOCKFISHTURN){
