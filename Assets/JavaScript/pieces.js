@@ -82,7 +82,7 @@ class pawn  {
             console.log('right Checked');
         }
         //checksLeft
-        if(leftSquare != undefined && leftsquare != null && leftSquare.color != this.color){
+        if(leftSquare != undefined && leftSgioquare != null && leftSquare.color != this.color){
             var captureLeft= document.getElementById(parseCoords(diagLeft)).square;
             captureLeft.setCanMoveTo(true);
             console.log('left Checked');
