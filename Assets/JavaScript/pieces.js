@@ -71,7 +71,6 @@ class pawn  {
         else{
             //black logic
         }
-
     }
     //checks diagonals to see if they exist, and occupied by an eneemy peice if they are, the moves are available.
     checkDiagonals(startSquare){
@@ -105,6 +104,32 @@ class pawn  {
     }
 }
 
+// this function is just what nathan and william wrote but slightly tweaked to be more general
+// this can be used to find pieces along any direction so it works for bishops, rooks, and queens
+function getDirection(direction, startSquare){
+    var location = startSquare.id;
+    var coords = getCoordinates(location);
+
+    for(var i = 0; i < 8; i++) {
+        var oneStep = traverseFrom(direction,coords);
+        var ID = parseCoords(oneStep);
+
+        if(ID == null) return;
+        
+        var nextOccupation = checkSquare(ID);
+        if(nextOccupation == 0) {
+           var nextSquare = document.getElementById(ID).square;
+           nextSquare.setCanMoveTo(true);
+        } else if(nextOccupation.toLowerCase() == nextOccupation) {
+            var nextSquare = document.getElementById(ID).square;
+           nextSquare.setCanMoveTo(true);
+           return;
+        } else {
+            return;
+        }
+    }
+}
+
 class rook {
     constructor(fenID){
         this.fenId = fenID;
@@ -116,115 +141,22 @@ class rook {
     }
     //gets and displays all available rook moves given a square
     getMoves(startSquare){
-        this.getColumnUp(startSquare);
-        this.getColumnDown(startSquare);
-        this.getRowRight(startSquare);
-        this.getRowLeft(startSquare);
-    }
-    getColumnUp(startSquare) {
-        console.log("Rook Up");
-        var location = startSquare.id;
-        var coords = getCoordinates(location);
-    if(this.color == 'white'){
-        var tempCoords = coords.slice();
-        for(var i = 0; i < 8; i++) {
-            var oneUp = traverseFrom("u",coords);
-            var ID = parseCoords(oneUp);
-            var nextOccupation = checkSquare(ID);
-            var collisionPiece = getPiece(ID);
-            if(nextOccupation == 0) {
-               var columnUp = document.getElementById(ID).square;
-               columnUp.setCanMoveTo(true);
-            } else if(collisionPiece.color != this.color) {
-                var columnUp = document.getElementById(ID).square;
-               columnUp.setCanMoveTo(true);
-               return;
-            } else {
-                return;
-            }
+        if(this.color == "white"){
+            getDirection("u", startSquare);
+            getDirection("d", startSquare);
+            getDirection("l", startSquare);
+            getDirection("r", startSquare);
         }
-    }
-}
-    getColumnDown(startSquare) {
-        console.log("Rook Down");
-    var location = startSquare.id;
-        var coords = getCoordinates(location);
-    if(this.color == 'white'){
-        var tempCoords = coords.slice();
-        for(var i = 0; i < 8; i++) {
-            var oneDown = traverseFrom("d",coords);
-            var ID = parseCoords(oneDown);
-            var nextOccupation = checkSquare(ID);
-            var collisionPiece = getPiece(ID);
-            if(nextOccupation == 0) {
-               var columnDown = document.getElementById(ID).square;
-               columnDown.setCanMoveTo(true);
-            } else if(collisionPiece.color != this.color) {
-                var columnDown = document.getElementById(ID).square;
-               columnDown.setCanMoveTo(true);
-               return;
-            } else {
-                return;
-            }
+        else{
+            // black logic
         }
-    }
-    }
-    
-    
-    getRowRight(startSquare) {
-        console.log("Rook Right");
-        var location = startSquare.id;
-        var coords = getCoordinates(location);
-    if(this.color == 'white'){
-        var tempCoords = coords.slice();
-        for(var i = 0; i < 8; i++) {
-            var oneRight = traverseFrom("r",coords);
-            var ID = parseCoords(oneRight);
-            var nextOccupation = checkSquare(ID);
-            var collisionPiece = getPiece(ID);
-            if(nextOccupation == 0) {
-               var rowRight = document.getElementById(ID).square;
-               rowRight.setCanMoveTo(true);
-            } else if(collisionPiece.color != this.color) {
-                var rowRight = document.getElementById(ID).square;
-               rowRight.setCanMoveTo(true);
-               return;
-            } else {
-                return;
-            }
-        }
-    }
-}
-getRowLeft(startSquare){
-    console.log("Rook Left");
-    var location = startSquare.id;
-        var coords = getCoordinates(location);
-    if(this.color == 'white'){
-        var tempCoords = coords.slice();
-        for(var i = 0; i < 8; i++) {
-            var oneLeft = traverseFrom("l",coords);
-            var ID = parseCoords(oneLeft);
-            var nextOccupation = checkSquare(ID);
-            var collisionPiece = getPiece(ID);
-            if(nextOccupation == 0) {
-               var rowLeft = document.getElementById(ID).square;
-               rowLeft.setCanMoveTo(true);
-            } else if(collisionPiece.color != this.color) {
-                var rowLeft = document.getElementById(ID).square;
-               rowLeft.setCanMoveTo(true);
-               return;
-            } else {
-                return;
-            }
-        }
-    }
     }
 }
 
 class bishop {
     constructor(fenID){
         this.fenId = fenID;
-        if(fenID=='b'){
+        if(fenID=='B'){
             this.color = "white";
         } else {
             this.color = "black";
@@ -232,107 +164,41 @@ class bishop {
     }
     //gets and displays all available bishop moves given a square
     getMoves(startSquare){
-        this.getUpRight(startSquare);
-        this.getUpLeft(startSquare);
-        this.getDownRight(startSquare);
-        this.getDownLeft(startSquare);
-    }
-    getUpRight(startSquare) {
-        console.log("Bishop Up Right");
-        var location = startSquare.id;
-        var coords = getCoordinates(location);
-    if(this.color == 'white'){
-        var tempCoords = coords.slice();
-        for(var i = 0; i < 8; i++) {
-            var oneUpRight = traverseFrom("ur",coords);
-            var ID = parseCoords(oneUpRight);
-            var nextOccupation = checkSquare(ID);
-            var collisionPiece = getPiece(ID);
-            if(nextOccupation == 0) {
-               var upRight = document.getElementById(ID).square;
-               upRight.setCanMoveTo(true);
-            } else if(collisionPiece.color != this.color) {
-                var upRight = document.getElementById(ID).square;
-               upRight.setCanMoveTo(true);
-               return;
-            } else {
-                return;
-            }
+        if(this.color == "white"){
+            getDirection("ul", startSquare);
+            getDirection("ur", startSquare);
+            getDirection("dl", startSquare);
+            getDirection("dr", startSquare);
+        }
+        else{
+            // black logic
         }
     }
 }
-    getUpLeft(startSquare) {
-        console.log("Bishop Up Left");
-    var location = startSquare.id;
-        var coords = getCoordinates(location);
-    if(this.color == 'white'){
-        var tempCoords = coords.slice();
-        for(var i = 0; i < 8; i++) {
-            var oneUpLeft = traverseFrom("ul",coords);
-            var ID = parseCoords(oneUpLeft);
-            var nextOccupation = checkSquare(ID);
-            var collisionPiece = getPiece(ID);
-            if(nextOccupation == 0) {
-               var upLeft = document.getElementById(ID).square;
-               upLeft.setCanMoveTo(true);
-            } else if(collisionPiece.color != this.color) {
-                var upLeft = document.getElementById(ID).square;
-               upLeft.setCanMoveTo(true);
-               return;
-            } else {
-                return;
-            }
+
+class queen {
+    constructor(fenID){
+        this.fenId = fenID;
+        if(fenID=='Q'){
+            this.color = "white";
+        } else {
+            this.color = "black";
         }
     }
-    }
-    
-    
-    getDownRight(startSquare) {
-        console.log("Bishop Down Right");
-        var location = startSquare.id;
-        var coords = getCoordinates(location);
-    if(this.color == 'white'){
-        var tempCoords = coords.slice();
-        for(var i = 0; i < 8; i++) {
-            var oneDownRight = traverseFrom("r",coords);
-            var ID = parseCoords(oneDownRight);
-            var nextOccupation = checkSquare(ID);
-            var collisionPiece = getPiece(ID);
-            if(nextOccupation == 0) {
-               var downRight = document.getElementById(ID).square;
-               downRight.setCanMoveTo(true);
-            } else if(collisionPiece.color != this.color) {
-                var downRight = document.getElementById(ID).square;
-               downRight.setCanMoveTo(true);
-               return;
-            } else {
-                return;
-            }
+    //gets and displays all available queen moves given a square
+    getMoves(startSquare){
+        if(this.color == "white"){
+            getDirection("u", startSquare);
+            getDirection("d", startSquare);
+            getDirection("l", startSquare);
+            getDirection("r", startSquare);
+            getDirection("ul", startSquare);
+            getDirection("ur", startSquare);
+            getDirection("dl", startSquare);
+            getDirection("dr", startSquare);
         }
-    }
-}
-getDownLeft(startSquare){
-    console.log("Bishop Down Left");
-    var location = startSquare.id;
-        var coords = getCoordinates(location);
-    if(this.color == 'white'){
-        var tempCoords = coords.slice();
-        for(var i = 0; i < 8; i++) {
-            var oneDownLeft = traverseFrom("l",coords);
-            var ID = parseCoords(oneDownLeft);
-            var nextOccupation = checkSquare(ID);
-            var collisionPiece = getPiece(ID);
-            if(nextOccupation == 0) {
-               var downLeft = document.getElementById(ID).square;
-               downLeft.setCanMoveTo(true);
-            } else if(collisionPiece.color != this.color) {
-                var downLeft = document.getElementById(ID).square;
-               downLeft.setCanMoveTo(true);
-               return;
-            } else {
-                return;
-            }
+        else{
+            // black logic
         }
-    }
     }
 }
