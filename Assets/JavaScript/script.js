@@ -28,7 +28,11 @@ const BorderWidths = {
 
 const GameState = {
     PLAYERTURN: "PLAYERTURN",
+    WAITINGFORRESPONSE: "WAITINGFORRESPONSE",
     STOCKFISHTURN: "STOCKFISHTURN",
+    BLACKWINS: "BLACKWINS",
+    WHITEWINS: "WHITEWINS",
+    STALEMATE: "STALEMATE"
 }
 // this variable will track the state of the game
 var gameState = GameState.PLAYERTURN;
@@ -36,8 +40,9 @@ var gameState = GameState.PLAYERTURN;
 var board = generateBoard();
 
 var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-var testFenString = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2";
-var fenArray = readFen(initialBoardFenString);
+var testFenString = "6q1/8/8/8/8/8/2P2k1K/8 w - - 0 1";
+// var fenArray = readFen(initialBoardFenString);
+var fenArray = readFen(testFenString);
 
 // this loops through the board array and the output of the readFen function and places all the peices as they should be according to the fen string
 for(var i = 0; i < 8; i++){

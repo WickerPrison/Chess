@@ -19,6 +19,39 @@ function getStockfishMove(inputFen){
         var initialSquare = document.getElementById(parseCoords(initialCoords)).square;
         var newSquare = document.getElementById(parseCoords(newCoords)).square;
         movePiece(initialSquare, newSquare);
-        gameState = GameState.PLAYERTURN;
+        endTurn(writeFen(false));
+    })
+}
+
+function endTurn(fenString){
+    fetch(requestStringStart + fenString + "&depth=5&mode=bestmove")
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        if(data.data == "Game over in position."){
+            if(gameState == GameState.WAITINGFORRESPONSE){
+                gameState = GameState.WHITEWINS;
+                console.log("player wins");
+            }
+            else if (gameState == GameState.STOCKFISHTURN){
+                gameState = GameState.BLACKWINS;
+                console.log("stockfish wins");
+            }
+            gameOver = true;
+        }
+        else if(data.data == "bestmove (none)"){
+            gameState = GameState.STALEMATE;
+            console.log("stalemate");
+        }
+        else{
+            if(gameState == GameState.STOCKFISHTURN){
+                gameState = GameState.PLAYERTURN;
+            }
+            if(gameState == GameState.WAITINGFORRESPONSE){
+                gameState = GameState.STOCKFISHTURN;
+                getStockfishMove(writeFen());
+            }
+        }
     })
 }

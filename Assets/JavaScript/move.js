@@ -14,7 +14,6 @@ function movePiece(fromSquare, toSquare){
 // for now this function will just have every piece move forward one square
 function highlightMovableSquares(startSquare){
     var occupation = startSquare.occupation;
-    console.log(occupation);
     if(occupation == '0'){
         return;
     } else{
@@ -120,7 +119,6 @@ function checkSquare(id){
         })
         var targetSquare = board[target];
         var occupation = targetSquare.occupation;
-        console.log(occupation);
         return occupation;
     }
     else{
