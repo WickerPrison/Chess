@@ -2,28 +2,9 @@
 function getPiece(fenID) {
     //will eventually have cases for each piece. Given a FenID grabs the appropriate piece class.
     switch(fenID){
-        case 'r':
-        case 'R':
-            var piece = new rook(fenID);
-            return piece;
-        case 'n':
-        case 'N':
-            var piece = new knight(fenID);
-            return piece;
-        case 'b':
-        case 'B':
-             var piece = new bishop(fenID);
-            return piece;
-        case 'k':
-        case 'K':
-            var piece = new king(fenID);
-            return piece;
-        case 'q':
-        case 'Q':
-            var piece = new queen(fenID);
-            return piece;
         case 'p':
         case 'P':
+            var piece = new pawn(fenID);
             return piece;
         case 'r':
         case 'R':
@@ -45,8 +26,6 @@ function getPiece(fenID) {
         case 'Q':
             var piece = new queen(fenID);
             return piece;
-            var piece = new pawn(fenID);
-        //other pieces here
         default:
             return;
     }
