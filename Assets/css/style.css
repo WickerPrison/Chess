@@ -47,6 +47,20 @@ body {
     font-size: 3em;
 }
 
+.chuckNorrisContainer {
+    text-align: center;
+}
+
+#chuckNorrisSection {
+    max-width: 8em;
+    border-radius: .5em;
+    padding: .2rem;
+    border-width: 1rem;
+    background-color: #bbbbbb;
+    border-color: rgb(22 101 52);
+    color: rgb(22 101 52);
+}
+
 /* this just prevents the picture of the piece from being clicked on */
 /* we only want to click on the square itself */
 img{

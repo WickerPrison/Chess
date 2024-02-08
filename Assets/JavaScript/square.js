@@ -60,8 +60,6 @@ class Square{
         // if square can be moved to then move to that square
         if(square.canMoveTo){
             movePiece(selectedSquare, square);
-
-
             var kingsSquare = board.find(function(kingSquare){
                 return kingSquare.occupation == "K";
             })
