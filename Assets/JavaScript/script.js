@@ -8,7 +8,7 @@ var turnsSinceTakeOrAdvance = 0;
 var castlesAvailable;
 
 // this tracks which square if any an en passant move is legal
-var enPassantSquare;
+var enPassantSquare = "-"
 
 // this variable tracks which square is currently being selected
 var selectedSquare;
