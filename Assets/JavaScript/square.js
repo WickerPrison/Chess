@@ -62,6 +62,7 @@ class Square{
             movePiece(selectedSquare, square);
             clearAllSquares();
             gameState = GameState.WAITINGFORRESPONSE;
+            console.log(findCheck(square));
             endTurn(writeFen());
             return;
         }
