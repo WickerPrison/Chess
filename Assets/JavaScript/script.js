@@ -1,3 +1,6 @@
+var promotionButtons = document.getElementsByClassName("promotionButton");
+var warning = document.getElementById("warning");
+
 // this tracks the total number of turns
 var turnsNum = 0;
 
@@ -51,6 +54,14 @@ var startTurnPosition = testFenString;
 readFen(testFenString);
 
 
+function showMessage(messageString){
+    warning.innerText = messageString;
+    warning.style.display = "block";
+    setTimeout(function(){
+        warning.style.display = "none";
+    }, 600)
+}
+
 function promotePawn(event){
     promotionSquare.occupation = event.target.id;
     promotionSquare.setSprite();
@@ -61,7 +72,6 @@ function promotePawn(event){
     endTurn(writeFen());
 }
 
-var promotionButtons = document.getElementsByClassName("promotionButton");
 for(var i = 0; i < promotionButtons.length; i++){
     promotionButtons[i].addEventListener("click", promotePawn);
 }

@@ -68,7 +68,7 @@ class Square{
             })
 
             if(findCheck(kingsSquare)){
-                console.log("can't move into check");
+                showMessage("Cannot Move Into Check");
                 readFen(startTurnPosition);
                 return;
             }

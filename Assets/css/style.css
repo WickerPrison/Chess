@@ -82,6 +82,17 @@ body {
     justify-content: space-evenly;
 }
 
+#warning{
+    display: none;
+    position: absolute;
+    background-color: var(--grey);
+    border: 1rem solid black;
+    top: 30%;
+    padding: .2rem;
+    border-radius: 0.5em;
+    font-size: 1.5em;
+}
+
 /* this just prevents the picture of the piece from being clicked on */
 /* we only want to click on the square itself */
 img{
