@@ -1,11 +1,31 @@
 //pieces logic below
-function getPiece(fenID){
+function getPiece(fenID) {
     //will eventually have cases for each piece. Given a FenID grabs the appropriate piece class.
-    switch(fenID){
+    switch (fenID) {
         case 'p':
         case 'P':
-            var piece = new pawn(fenID);
             return piece;
+        case 'r':
+        case 'R':
+            var piece = new rook(fenID);
+            return piece;
+        case 'n':
+        case 'N':
+            var piece = new knight(fenID);
+            return piece;
+        case 'b':
+        case 'B':
+            var piece = new bishop(fenID);
+            return piece;
+        case 'k':
+        case 'K':
+            var piece = new king(fenID);
+            return piece;
+        case 'q':
+        case 'Q':
+            var piece = new queen(fenID);
+            return piece;
+            var piece = new pawn(fenID);
         //other pieces here
         default:
             return;
@@ -15,13 +35,13 @@ function getPiece(fenID){
 
 
 
-class pawn  {
-    constructor(fenID){
-        if(fenID== 'P'){
+class pawn {
+    constructor(fenID) {
+        if (fenID == 'P') {
 
             this.color = 'white';
         }
-        else{
+        else {
             this.color = 'black'
         }
     }
@@ -29,14 +49,14 @@ class pawn  {
     getMoves(startSquare) {
         var location = startSquare.id;
         var coords = getCoordinates(location);
-        if(this.color == 'white'){
+        if (this.color == 'white') {
             var oneUp = traverseFrom("u", coords.slice());
-            coords =getCoordinates(location);
+            coords = getCoordinates(location);
             var nextOccupation = checkSquare(parseCoords(oneUp));
             //checks for a piece blocking the regular move
-            if(nextOccupation == '0'){
+            if (nextOccupation == '0') {
 
-                var regularMove= document.getElementById(parseCoords(oneUp)).square;
+                var regularMove = document.getElementById(parseCoords(oneUp)).square;
                 regularMove.setCanMoveTo(true);
 
                 var twoUp = traverseFrom("u", oneUp.slice());
@@ -44,7 +64,7 @@ class pawn  {
                 var twoBlocksUp = checkSquare(parseCoords(twoUp));
 
                 //if it has not moved forward and the spot is not taken it can move two
-                if(coords[1] == '2' && twoBlocksUp == '0'){
+                if (coords[1] == '2' && twoBlocksUp == '0') {
                     var firstAllowed = document.getElementById(parseCoords(twoUp)).square;
                     firstAllowed.setCanMoveTo(true);
                 }
@@ -52,35 +72,35 @@ class pawn  {
             this.checkDiagonals(startSquare);
 
         }
-        else{
+        else {
             //black logic
         }
 
     }
     //checks diagonals to see if they exist, and occupied by an eneemy peice if they are, the moves are available.
-    checkDiagonals(startSquare){
+    checkDiagonals(startSquare) {
         var location = startSquare.id;
         var coords = getCoordinates(location);
 
         var diagRight = traverseFrom("ur", coords);
         coords = getCoordinates(location);
-        var targetRight= checkSquare(parseCoords(diagRight));
+        var targetRight = checkSquare(parseCoords(diagRight));
         var rightSquare = getPiece(targetRight);
 
 
         var diagLeft = traverseFrom("ul", coords);
         coords = getCoordinates(location);
-        var targetLeft= checkSquare(parseCoords(diagLeft));
+        var targetLeft = checkSquare(parseCoords(diagLeft));
         var leftSquare = getPiece(targetLeft);
-        
+
         //checks right
-        if((rightSquare != undefined && rightSquare != null && rightSquare.color != this.color)){
-            var captureRight= document.getElementById(parseCoords(diagRight)).square;
+        if ((rightSquare != undefined && rightSquare != null && rightSquare.color != this.color)) {
+            var captureRight = document.getElementById(parseCoords(diagRight)).square;
             captureRight.setCanMoveTo(true);
         }
         //checksLeft
-        if(leftSquare != undefined && leftSquare != null && leftSquare.color != this.color){
-            var captureLeft= document.getElementById(parseCoords(diagLeft)).square;
+        if (leftSquare != undefined && leftSquare != null && leftSquare.color != this.color) {
+            var captureLeft = document.getElementById(parseCoords(diagLeft)).square;
             captureLeft.setCanMoveTo(true);
         }
 
