@@ -45,15 +45,16 @@ var gameState = GameState.PLAYERTURN;
 
 var board = generateBoard();
 
-// var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-// var startTurnPosition = initialBoardFenString;
-// var fenArray = readFen(initialBoardFenString);
+var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+var startTurnPosition = initialBoardFenString;
+var fenArray = readFen(initialBoardFenString);
 
-var testFenString = "1k6/5P2/8/8/8/7b/8/R3K2R w KQ - 0 1";
-var startTurnPosition = testFenString;
-readFen(testFenString);
+// var testFenString = "1k6/5P2/8/8/8/7b/8/R3K2R w KQ - 0 1";
+// var startTurnPosition = testFenString;
+// readFen(testFenString);
 
 
+// this function will show any string it is given on the screen for 0.6 seconds
 function showMessage(messageString){
     warning.innerText = messageString;
     warning.style.display = "block";
@@ -62,6 +63,7 @@ function showMessage(messageString){
     }, 600)
 }
 
+// this is used to promote the player's pawns after they make their selection for what they will promote into
 function promotePawn(event){
     promotionSquare.occupation = event.target.id;
     promotionSquare.setSprite();

@@ -11,7 +11,6 @@ function getStockfishMove(inputFen){
         return response.json();
     })
     .then(function(data){
-        console.log(data.data);
         if(data.data == ""){
             console.log("blank output from stockfish");
         }

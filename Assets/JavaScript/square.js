@@ -85,6 +85,7 @@ class Square{
                 console.log('enpassante ' + enPassantSquare);
             }
 
+            // this checks if a pawn is moving into the back rank and then pulls up the promotion menu
             if(square.canPromote){
                 gameState = GameState.PROMOTINGPAWN;
                 promotionMenu.style.display = "block";
