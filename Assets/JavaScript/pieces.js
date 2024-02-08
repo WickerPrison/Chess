@@ -57,6 +57,9 @@ class pawn {
 
                 var regularMove = document.getElementById(parseCoords(oneUp)).square;
                 regularMove.setCanMoveTo(true);
+                if(coords[1] == 7){
+                    regularMove.canPromote = true;
+                }
 
                 var twoUp = traverseFrom("u", oneUp);
                 coords = getCoordinates(location);
@@ -95,12 +98,18 @@ class pawn {
         if ((rightSquare != undefined && rightSquare != null && rightSquare.color != this.color)) {
             var captureRight = document.getElementById(parseCoords(diagRight)).square;
             captureRight.setCanMoveTo(true);
+            if(coords[1] == 7){
+                captureRight.canPromote = true;
+            }
             console.log('right Checked');
         }
         //checksLeft
         if (leftSquare != undefined && leftSquare != null && leftSquare.color != this.color) {
             var captureLeft = document.getElementById(parseCoords(diagLeft)).square;
             captureLeft.setCanMoveTo(true);
+            if(coords[1] == 7){
+                captureLeft.canPromote = true;
+            }
             console.log('left Checked');
         }
 

@@ -5,6 +5,8 @@
    --defaultBorderColor: black;
    --selectedBorderColor: green;
    --canMoveToBorderColor: white;
+   --grey: #bbbbbb;
+   --green: rgb(22 101 52);
 }
 
 body {
@@ -56,9 +58,28 @@ body {
     border-radius: .5em;
     padding: .2rem;
     border-width: 1rem;
-    background-color: #bbbbbb;
-    border-color: rgb(22 101 52);
-    color: rgb(22 101 52);
+    background-color: var(--grey);
+    border-color: var(--green);
+    color: var(--green);
+}
+
+#promotionMenu{
+    display: none;
+    position: absolute;
+    top: 30%;
+    box-sizing: border-box;
+    width: 50%;
+    left: 25%;
+    background-color: var(--grey);
+    border: 1rem solid black;
+    border-radius: .5em;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#promotionContainer{
+    display: flex;
+    justify-content: space-evenly;
 }
 
 /* this just prevents the picture of the piece from being clicked on */

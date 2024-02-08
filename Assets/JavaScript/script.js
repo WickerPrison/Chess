@@ -13,6 +13,9 @@ var enPassantSquare;
 // this variable tracks which square is currently being selected
 var selectedSquare;
 
+// this variable tracks which square currently has a pawn that needs to be promoted
+var promotionSquare;
+
 // these are basically a poor man's enums. All they really do is let us store strings in a way that we don't have to type it out every time.
 const Colors = {
     DEFAULT: "var(--defaultBorderColor)",
@@ -31,7 +34,8 @@ const GameState = {
     STOCKFISHTURN: "STOCKFISHTURN",
     BLACKWINS: "BLACKWINS",
     WHITEWINS: "WHITEWINS",
-    STALEMATE: "STALEMATE"
+    STALEMATE: "STALEMATE",
+    PROMOTINGPAWN: "PROMOTINGPAWN"
 }
 // this variable will track the state of the game
 var gameState = GameState.PLAYERTURN;
@@ -42,7 +46,22 @@ var board = generateBoard();
 // var startTurnPosition = initialBoardFenString;
 // var fenArray = readFen(initialBoardFenString);
 
-var testFenString = "2k5/8/8/8/8/bPPPp2P/p1K5/4r3 w - - 0 1";
+var testFenString = "8/5P2/8/1k6/8/8/6K1/8 w - - 0 1";
 var startTurnPosition = testFenString;
 readFen(testFenString);
 
+
+function promotePawn(event){
+    promotionSquare.occupation = event.target.id;
+    promotionSquare.setSprite();
+    promotionSquare = "";
+    promotionMenu.style.display = "none";
+    clearAllSquares();
+    gameState = GameState.WAITINGFORRESPONSE;
+    endTurn(writeFen());
+}
+
+var promotionButtons = document.getElementsByClassName("promotionButton");
+for(var i = 0; i < promotionButtons.length; i++){
+    promotionButtons[i].addEventListener("click", promotePawn);
+}

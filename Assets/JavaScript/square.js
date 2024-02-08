@@ -1,3 +1,5 @@
+var promotionMenu = document.getElementById("promotionMenu");
+
 // this dictionary allows us to get a reference to the image file from a letter
 var spriteDictionary = {
     "r": "./Assets/Sprites/blackRook.svg",
@@ -23,6 +25,7 @@ class Square{
         this.el = el;
         this.canMoveTo = false;
         this.canCastleTo = false;
+        this.canPromote = false;
     }
 
     // this method sets the sprite on the board based on the occupation variable
@@ -80,6 +83,13 @@ class Square{
             if(square.occupation == 'P' && eq == 2){
                 enPassantSquare = parseCoords(traverseFrom('u', selectedCoords));
                 console.log('enpassante ' + enPassantSquare);
+            }
+
+            if(square.canPromote){
+                gameState = GameState.PROMOTINGPAWN;
+                promotionMenu.style.display = "block";
+                promotionSquare = square;
+                return;
             }
 
             clearAllSquares();
@@ -140,5 +150,6 @@ function clearAllSquares(){
     for(var i = 0; i < board.length; i++){
         board[i].setCanMoveTo(false);
         board[i].canCastleTo = false;
+        board[i].canPromote = false;
     }
 }
