@@ -60,20 +60,6 @@ class Square{
         // if square can be moved to then move to that square
         if(square.canMoveTo){
             movePiece(selectedSquare, square);
-            var selectedCoords = getCoordinates(selectedSquare.id);
-            console.log(selectedCoords);
-            console.log(selectedSquare.occupation);
-            var newCoords = getCoordinates(square.id);
-            console.log(newCoords);
-            console.log(square.occupation);
-            var num = selectedCoords[1]
-            var numTwo = newCoords[1];
-            var eq = numTwo-num;
-            console.log(eq);
-            if(square.occupation = 'P' && eq == 2){
-                enPassantSquare = parseCoords(traverseFrom('u', selectedCoords));
-                console.log('enpassante ' + enPassantSquare);
-            }
             clearAllSquares();
             gameState = GameState.WAITINGFORRESPONSE;
             endTurn(writeFen());

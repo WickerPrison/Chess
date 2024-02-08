@@ -83,7 +83,7 @@ function writeFen(blackTurn = true){
 
     fenString += " ";
 
-        fenString += enPassantSquare;
+    fenString += enPassantSquare;
 
     fenString += " ";
     
@@ -92,7 +92,6 @@ function writeFen(blackTurn = true){
     fenString += " ";
 
     fenString += turnsNum;
-    
-    enPassantSquare = '-';
+
     return fenString;
 }
