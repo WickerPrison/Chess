@@ -13,7 +13,6 @@ var enPassantSquare;
 // this variable tracks which square is currently being selected
 var selectedSquare;
 
-
 // these are basically a poor man's enums. All they really do is let us store strings in a way that we don't have to type it out every time.
 const Colors = {
     DEFAULT: "var(--defaultBorderColor)",
@@ -39,15 +38,11 @@ var gameState = GameState.PLAYERTURN;
 
 var board = generateBoard();
 
-var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-var testFenString = "7k/8/5P1B/5Q2/4K3/8/2P5/8 w - - 0 1";
-var fenArray = readFen(initialBoardFenString);
-// var fenArray = readFen(testFenString);
+// var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+// var startTurnPosition = initialBoardFenString;
+// var fenArray = readFen(initialBoardFenString);
 
-// this loops through the board array and the output of the readFen function and places all the peices as they should be according to the fen string
-for(var i = 0; i < 8; i++){
-    for(var j=0; j < 8; j++){
-        board[i * 8 + j].occupation = fenArray[i][j];
-        board[i * 8 + j].setSprite();
-    }
-}
+var testFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/R1BQKB1R w KQkq - 0 1";
+var startTurnPosition = testFenString;
+readFen(testFenString);
+

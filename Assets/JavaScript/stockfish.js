@@ -11,6 +11,13 @@ function getStockfishMove(inputFen){
         return response.json();
     })
     .then(function(data){
+        if(data.data == ""){
+            console.log("cannot move into check");
+            readFen(startTurnPosition);
+            gameState = GameState.PLAYERTURN;
+            return;
+        }
+
         // these lines parse stockfish's output into our coordinate system
         var outputArray = data.data.split(" ");
         var bestMove = outputArray[1].split("");
@@ -25,18 +32,22 @@ function getStockfishMove(inputFen){
     })
 }
 
+// this function is called at the end of every turn by either player or stockfish
 function endTurn(fenString){
     fetch(requestStringStart + fenString + "&depth=5&mode=bestmove")
     .then(function(response){
         return response.json();
     })
     .then(function(data){
+        // if there is a checkmate data.data will return "Game over in position.""
         if(data.data == "Game over in position."){
+            // if the player's turn just ended the gamestate will be waiting for a response from stockfish
             if(gameState == GameState.WAITINGFORRESPONSE){
                 gameState = GameState.WHITEWINS;
                 endGame.innerText = "White Wins You Filthy Cheater!";
                 endGame.style.display = "block";
             }
+            // if stockfish just ended it's turn the game state will still be set to STOCKFISHTURN
             else if (gameState == GameState.STOCKFISHTURN){
                 gameState = GameState.BLACKWINS;
                 endGame.innerText = "Black Wins!";
@@ -44,13 +55,16 @@ function endTurn(fenString){
             }
             gameOver = true;
         }
+        // stockfish returns "bestmove (none)" if there is a stalemate
         else if(data.data == "bestmove (none)"){
             gameState = GameState.STALEMATE;
             endGame.innerText = "Stalemate";
             endGame.style.display = "block";
         }
         else{
+            // if stockfish returns anything else the game should proceed
             if(gameState == GameState.STOCKFISHTURN){
+                startTurnPosition = writeFen();
                 gameState = GameState.PLAYERTURN;
             }
             if(gameState == GameState.WAITINGFORRESPONSE){
