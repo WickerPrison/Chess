@@ -21,11 +21,16 @@ function getStockfishMove(inputFen){
         var bestMove = outputArray[1].split("");
         var initialCoords = [alphabet.indexOf(bestMove[0]), bestMove[1]];
         var newCoords = [alphabet.indexOf(bestMove[2]), bestMove[3]];
-
+        
         // these lines get references to the square instances needed and move the pieces
         var initialSquare = document.getElementById(parseCoords(initialCoords)).square;
         var newSquare = document.getElementById(parseCoords(newCoords)).square;
         movePiece(initialSquare, newSquare);
+        
+        if(bestMove.length == 5){
+            newSquare.occupation = bestMove[4];
+            newSquare.setSprite();
+        }
         endTurn(writeFen(false));
     })
 }

@@ -42,7 +42,7 @@ var board = generateBoard();
 // var startTurnPosition = initialBoardFenString;
 // var fenArray = readFen(initialBoardFenString);
 
-var testFenString = "2k5/8/8/8/4p3/r5P1/5PKP/5NbR w - - 0 1";
+var testFenString = "2k5/8/8/8/8/bPPPp2P/p1K5/4r3 w - - 0 1";
 var startTurnPosition = testFenString;
 readFen(testFenString);
 
