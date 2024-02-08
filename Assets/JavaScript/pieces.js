@@ -222,6 +222,7 @@ for(var i = 0; i < castleSquaresIDs.length; i++){
     var castleSquare = document.getElementById(castleSquaresIDs[i]).square;
     castleSquares.push(castleSquare);
 }
+var e1Square = document.getElementById("e1").square;
 
 class king  {
     constructor(fenID){
@@ -272,12 +273,12 @@ class king  {
 
     // this method uses the array set up above to check if the relevant squares are clear and allow castling
     getCastle(){
-        if(castlesAvailable == "") return;
+        if(castlesAvailable == "" || findCheck(e1Square)) return;
 
         if(castlesAvailable.includes("Q")){
             var queenCastle = true;
             for(var i = 0; i < 3; i++){
-                if(castleSquares[i].occupation != "0"){
+                if(castleSquares[i].occupation != "0" || findCheck(castleSquares[i])){
                     queenCastle = false;
                     break;
                 }
@@ -291,7 +292,7 @@ class king  {
         if(castlesAvailable.includes("K")){
             var kingCastle = true;
             for(var i = 3; i < 5; i++){
-                if(castleSquares[i].occupation != "0"){
+                if(castleSquares[i].occupation != "0" || findCheck(castleSquares[i])){
                     kingCastle = false;
                     break;
                 }
