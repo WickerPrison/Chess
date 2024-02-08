@@ -61,6 +61,7 @@ class Square{
         if(square.canMoveTo){
             movePiece(selectedSquare, square);
 
+
             var kingsSquare = board.find(function(kingSquare){
                 return kingSquare.occupation == "K";
             })
@@ -69,6 +70,22 @@ class Square{
                 console.log("can't move into check");
                 readFen(startTurnPosition);
                 return;
+            }
+
+
+            var selectedCoords = getCoordinates(selectedSquare.id);
+            console.log(selectedCoords);
+            console.log(selectedSquare.occupation);
+            var newCoords = getCoordinates(square.id);
+            console.log(newCoords);
+            console.log(square.occupation);
+            var num = selectedCoords[1]
+            var numTwo = newCoords[1];
+            var eq = numTwo-num;
+            console.log(eq);
+            if(square.occupation = 'P' && eq == 2){
+                enPassantSquare = parseCoords(traverseFrom('u', selectedCoords));
+                console.log('enpassante ' + enPassantSquare);
             }
 
             clearAllSquares();
