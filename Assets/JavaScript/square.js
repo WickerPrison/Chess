@@ -60,9 +60,19 @@ class Square{
         // if square can be moved to then move to that square
         if(square.canMoveTo){
             movePiece(selectedSquare, square);
+
+            var kingsSquare = board.find(function(kingSquare){
+                return kingSquare.occupation == "K";
+            })
+
+            if(findCheck(kingsSquare)){
+                console.log("can't move into check");
+                readFen(startTurnPosition);
+                return;
+            }
+
             clearAllSquares();
             gameState = GameState.WAITINGFORRESPONSE;
-            console.log(findCheck(square));
             endTurn(writeFen());
             return;
         }

@@ -11,13 +11,10 @@ function getStockfishMove(inputFen){
         return response.json();
     })
     .then(function(data){
-        // console.log(data.data);
-        // if(data.data == ""){
-        //     console.log("cannot move into check");
-        //     readFen(startTurnPosition);
-        //     gameState = GameState.PLAYERTURN;
-        //     return;
-        // }
+        console.log(data.data);
+        if(data.data == ""){
+            console.log("blank output from stockfish");
+        }
 
         // these lines parse stockfish's output into our coordinate system
         var outputArray = data.data.split(" ");
