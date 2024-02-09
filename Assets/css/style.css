@@ -11,18 +11,22 @@
 
 body {
     display:flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     margin: 4.5rem;
-    padding: 2rem;
+    padding-top: 3rem;
 }
 
 .board {
+    min-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
     padding: 1rem;
     border-radius: .5rem;
     display: grid;
-    grid-template-columns: repeat(8, 4.5rem);
-    grid-template-rows: repeat(8, 4.5rem);
+    grid-template-columns: repeat(8, 12.5%);
+    grid-template-rows: repeat(8);
     background-color: #bbbbbb;
     color: rgb(22 101 52); 
     box-shadow: 0 0 2rem #444444;
@@ -32,6 +36,11 @@ body {
     padding: .2rem;
     border-width: var(--normalBorderWidth);
     border-color: black;
+    overflow: hidden;
+}
+
+.board > .spaces {
+    aspect-ratio: 1/1;
 }
 
 .darker {
@@ -50,11 +59,15 @@ body {
 }
 
 .chuckNorrisContainer {
+    min-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    display: block;
     text-align: center;
 }
 
 #chuckNorrisSection {
-    max-width: 8em;
     border-radius: .5em;
     padding: .2rem;
     border-width: 1rem;
@@ -97,4 +110,7 @@ body {
 /* we only want to click on the square itself */
 img{
     pointer-events: none;
+    width: 75%;
+    height: 75%;
+    object-fit: cover;
 }
