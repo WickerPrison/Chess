@@ -163,8 +163,7 @@ function checkSquare(id){
     if(id != null){
 
         //I've never used .filter before. I expect a problem here at some point
-        var target = getSquareByID(id);
-        var targetSquare = board[target];
+        var targetSquare = getSquareByID(id);
         var occupation = targetSquare.occupation;
         return occupation;
     }
@@ -174,11 +173,10 @@ function checkSquare(id){
 }
 //if black performs an en passant, the pawn that is being taken is removed from the board
 function blackEnPassant (inputFen) {
-
     // splits the fenstring and grabs only the en passant value
     var fenArray = inputFen.split(" ");
     var enPassantTarget = fenArray[3];
-    var target = getSquareByID(enPassantTarget.id);
+    var target = getSquareByID(enPassantTarget);
     //checks if the en passant value is anything other than the null case and if the piece that moved their is a black pawn
     if(enPassantTarget != '-' && target.occupation =='p'){
         var coords =  getCoordinates(target.id).slice()
