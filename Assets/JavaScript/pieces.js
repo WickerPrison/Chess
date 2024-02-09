@@ -326,4 +326,33 @@ class knight  {
             this.color = 'black'
         }
     }
+
+    getMoves(startSquare){
+        if(this.color == "white"){
+            var knightDirections = ["uur", "uul", "llu", "lld", "ddr", "ddl", "rru", "rrd"]; 
+
+            for(var i=0; i<knightDirections.length; i++){
+                var coordinates = getCoordinates(startSquare.id);
+                var destination = traverseFrom(knightDirections[i], coordinates);
+
+                var ID = parseCoords(destination);
+
+                if(ID == null) continue;
+        
+                var nextOccupation = checkSquare(ID);
+
+                if(nextOccupation == 0) {
+                    var nextSquare = document.getElementById(ID).square;
+                    nextSquare.setCanMoveTo(true);
+                } else if(nextOccupation.toLowerCase() == nextOccupation) {
+                    var nextSquare = document.getElementById(ID).square;
+                    nextSquare.setCanMoveTo(true);
+                }  
+            }
+            
+        }
+        else{
+            // black logic
+        }
+    }
 }
