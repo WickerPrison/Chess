@@ -67,22 +67,12 @@ class Square{
                 return kingSquare.occupation == "K";
             })
 
+            checkEnPassant(selectedSquare, square);
+
             if(findCheck(kingsSquare)){
                 showMessage("Cannot Move Into Check");
                 readFen(startTurnPosition);
                 return;
-            }
-
-
-            var selectedCoords = getCoordinates(selectedSquare.id);
-            var newCoords = getCoordinates(square.id);
-            var num = selectedCoords[1]
-            var numTwo = newCoords[1];
-            var eq = numTwo-num;
-
-            if(square.occupation == 'P' && eq == 2){
-                enPassantSquare = parseCoords(traverseFrom('u', selectedCoords));
-                console.log('enpassante ' + enPassantSquare);
             }
 
             // this checks if a pawn is moving into the back rank and then pulls up the promotion menu

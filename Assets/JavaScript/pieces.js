@@ -115,7 +115,18 @@ class pawn {
 
     }
 }
+function checkEnPassant (selectedSquare, square){
+    var selectedCoords = getCoordinates(selectedSquare.id);
+    var newCoords = getCoordinates(square.id);
+    var num = selectedCoords[1]
+    var numTwo = newCoords[1];
+    var eq = numTwo-num;
 
+    if(square.occupation == 'P' && eq == 2){
+        enPassantSquare = parseCoords(traverseFrom('u', selectedCoords));
+        console.log('enpassante ' + enPassantSquare);
+    }
+}
 // this function is just what nathan and william wrote but slightly tweaked to be more generic
 // this can be used to find pieces along any direction so it works for bishops, rooks, and queens
 function getDirection(direction, startSquare){
