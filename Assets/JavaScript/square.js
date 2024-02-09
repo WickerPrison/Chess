@@ -86,6 +86,7 @@ class Square{
             }
             
             // this finds if we just performed an en passant and kills the pawn behind our pawn
+            console.log(square.enPassant);
             if(square.enPassant){
                 var coordinates = getCoordinates(square.id);
                 coordinates[1] = 5;
@@ -107,11 +108,10 @@ class Square{
             selectedSquare = square;
             square.el.style.borderColor = Colors.SELECTED;
             square.el.style.borderWidth = BorderWidths.THICK;
-            highlightMovableSquares(selectedSquare);
-
             for(var i = 0; i < board.length; i++){
                 board[i].enPassant = false;
             }
+            highlightMovableSquares(selectedSquare);
         }
     }
 
