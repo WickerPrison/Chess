@@ -30,6 +30,12 @@ function getStockfishMove(inputFen){
             newSquare.occupation = bestMove[4];
             newSquare.setSprite();
         }
+        
+        if(initialCoords[1] == 7 && newCoords[1] == 5 && initialCoords[0] == newCoords[0] && newSquare.occupation == "p"){
+            var enPassantCoords = [initialCoords[0], 6];
+            enPassantSquare = parseCoords(enPassantCoords);
+        }
+        
         endTurn(writeFen(false));
     })
 }

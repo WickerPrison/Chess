@@ -95,7 +95,12 @@ class pawn {
         var leftSquare = getPiece(targetLeft);
 
         //checks right
-        if ((rightSquare != undefined && rightSquare != null && rightSquare.color != this.color)) {
+        if(parseCoords(diagRight) == enPassantSquare){
+            var captureRight = document.getElementById(parseCoords(diagRight)).square;
+            captureRight.setCanMoveTo(true);
+            captureRight.enPassant = true;
+        }
+        else if ((rightSquare != undefined && rightSquare != null && rightSquare.color != this.color)) {
             var captureRight = document.getElementById(parseCoords(diagRight)).square;
             captureRight.setCanMoveTo(true);
             if(coords[1] == 7){
@@ -104,7 +109,12 @@ class pawn {
             console.log('right Checked');
         }
         //checksLeft
-        if (leftSquare != undefined && leftSquare != null && leftSquare.color != this.color) {
+        if(parseCoords(diagLeft) == enPassantSquare){
+            var captureLeft = document.getElementById(parseCoords(diagLeft)).square;
+            captureLeft.setCanMoveTo(true);
+            captureLeft.enPassant = true;
+        }
+        else if (leftSquare != undefined && leftSquare != null && leftSquare.color != this.color) {
             var captureLeft = document.getElementById(parseCoords(diagLeft)).square;
             captureLeft.setCanMoveTo(true);
             if(coords[1] == 7){
