@@ -175,9 +175,7 @@ function checkSquare(id){
     if(id != null){
 
         //I've never used .filter before. I expect a problem here at some point
-        var target = board.findIndex( function(element){
-           return element.id === id;
-        })
+        var target = getSquareByID(id);
         var targetSquare = board[target];
         var occupation = targetSquare.occupation;
         return occupation;
@@ -186,3 +184,17 @@ function checkSquare(id){
         return null;
     }
 }
+
+function blackEnPassant (inputFen) {
+    var fenArray = inputFen.split(" ");
+    var enPassantTarget = fenArray[3];
+    var target = getSquareByID(enPassantTarget.id);
+    if(enPassantTarget != '-' && target.occupation =='p'){
+        var coords =  getCoordinates(target.id).slice()
+        var oneUp =traverseFrom('u', coords)
+        var newID =parseCoords(oneUp)
+        var blockup = getSquareByID(newID);
+        blockup.occupation = '0';
+        blockup.setSprite();
+    }
+};

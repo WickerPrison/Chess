@@ -144,3 +144,11 @@ function clearAllSquares(){
         board[i].canPromote = false;
     }
 }
+
+function getSquareByID(id){
+    var square = board.findIndex( function(element){
+        return element.id === enPassantTarget;
+    });
+    return square;
+
+}
