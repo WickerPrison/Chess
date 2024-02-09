@@ -144,7 +144,7 @@ function clearAllSquares(){
         board[i].canPromote = false;
     }
 }
-
+// just gives us an easy way to grab a square object by its id
 function getSquareByID(id){
     var square = board.findIndex( function(element){
         return element.id === enPassantTarget;

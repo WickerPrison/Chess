@@ -184,11 +184,14 @@ function checkSquare(id){
         return null;
     }
 }
-
+//if black performs an en passant, the pawn that is being taken is removed from the board
 function blackEnPassant (inputFen) {
+
+    // splits the fenstring and grabs only the en passant value
     var fenArray = inputFen.split(" ");
     var enPassantTarget = fenArray[3];
     var target = getSquareByID(enPassantTarget.id);
+    //checks if the en passant value is anything other than the null case and if the piece that moved their is a black pawn
     if(enPassantTarget != '-' && target.occupation =='p'){
         var coords =  getCoordinates(target.id).slice()
         var oneUp =traverseFrom('u', coords)
