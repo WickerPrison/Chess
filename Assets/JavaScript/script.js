@@ -1,3 +1,6 @@
+var promotionButtons = document.getElementsByClassName("promotionButton");
+var warning = document.getElementById("warning");
+
 // this tracks the total number of turns
 var turnsNum = 0;
 
@@ -12,6 +15,9 @@ var enPassantSquare;
 
 // this variable tracks which square is currently being selected
 var selectedSquare;
+
+// this variable tracks which square currently has a pawn that needs to be promoted
+var promotionSquare;
 
 // these are basically a poor man's enums. All they really do is let us store strings in a way that we don't have to type it out every time.
 const Colors = {
@@ -31,18 +37,43 @@ const GameState = {
     STOCKFISHTURN: "STOCKFISHTURN",
     BLACKWINS: "BLACKWINS",
     WHITEWINS: "WHITEWINS",
-    STALEMATE: "STALEMATE"
+    STALEMATE: "STALEMATE",
+    PROMOTINGPAWN: "PROMOTINGPAWN"
 }
 // this variable will track the state of the game
 var gameState = GameState.PLAYERTURN;
 
 var board = generateBoard();
 
-// var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-// var startTurnPosition = initialBoardFenString;
-// var fenArray = readFen(initialBoardFenString);
+var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+var startTurnPosition = initialBoardFenString;
+var fenArray = readFen(initialBoardFenString);
 
-var testFenString = "7k/5q2/8/8/5R2/5K2/8/8 w - - 0 1";
-var startTurnPosition = testFenString;
-readFen(testFenString);
+// var testFenString = "1k6/5P2/8/8/8/7b/8/R3K2R w KQ - 0 1";
+// var startTurnPosition = testFenString;
+// readFen(testFenString);
 
+
+// this function will show any string it is given on the screen for 0.6 seconds
+function showMessage(messageString){
+    warning.innerText = messageString;
+    warning.style.display = "block";
+    setTimeout(function(){
+        warning.style.display = "none";
+    }, 600)
+}
+
+// this is used to promote the player's pawns after they make their selection for what they will promote into
+function promotePawn(event){
+    promotionSquare.occupation = event.target.id;
+    promotionSquare.setSprite();
+    promotionSquare = "";
+    promotionMenu.style.display = "none";
+    clearAllSquares();
+    gameState = GameState.WAITINGFORRESPONSE;
+    endTurn(writeFen());
+}
+
+for(var i = 0; i < promotionButtons.length; i++){
+    promotionButtons[i].addEventListener("click", promotePawn);
+}

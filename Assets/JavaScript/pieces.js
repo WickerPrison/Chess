@@ -57,6 +57,9 @@ class pawn {
 
                 var regularMove = document.getElementById(parseCoords(oneUp)).square;
                 regularMove.setCanMoveTo(true);
+                if(coords[1] == 7){
+                    regularMove.canPromote = true;
+                }
 
                 var twoUp = traverseFrom("u", oneUp);
                 coords = getCoordinates(location);
@@ -95,12 +98,18 @@ class pawn {
         if ((rightSquare != undefined && rightSquare != null && rightSquare.color != this.color)) {
             var captureRight = document.getElementById(parseCoords(diagRight)).square;
             captureRight.setCanMoveTo(true);
+            if(coords[1] == 7){
+                captureRight.canPromote = true;
+            }
             console.log('right Checked');
         }
         //checksLeft
         if (leftSquare != undefined && leftSquare != null && leftSquare.color != this.color) {
             var captureLeft = document.getElementById(parseCoords(diagLeft)).square;
             captureLeft.setCanMoveTo(true);
+            if(coords[1] == 7){
+                captureLeft.canPromote = true;
+            }
             console.log('left Checked');
         }
 
@@ -213,6 +222,7 @@ for(var i = 0; i < castleSquaresIDs.length; i++){
     var castleSquare = document.getElementById(castleSquaresIDs[i]).square;
     castleSquares.push(castleSquare);
 }
+var e1Square = document.getElementById("e1").square;
 
 class king  {
     constructor(fenID){
@@ -263,12 +273,12 @@ class king  {
 
     // this method uses the array set up above to check if the relevant squares are clear and allow castling
     getCastle(){
-        if(castlesAvailable == "") return;
+        if(castlesAvailable == "" || findCheck(e1Square)) return;
 
         if(castlesAvailable.includes("Q")){
             var queenCastle = true;
             for(var i = 0; i < 3; i++){
-                if(castleSquares[i].occupation != "0"){
+                if(castleSquares[i].occupation != "0" || findCheck(castleSquares[i])){
                     queenCastle = false;
                     break;
                 }
@@ -282,7 +292,7 @@ class king  {
         if(castlesAvailable.includes("K")){
             var kingCastle = true;
             for(var i = 3; i < 5; i++){
-                if(castleSquares[i].occupation != "0"){
+                if(castleSquares[i].occupation != "0" || findCheck(castleSquares[i])){
                     kingCastle = false;
                     break;
                 }
