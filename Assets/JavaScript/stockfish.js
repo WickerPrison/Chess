@@ -25,7 +25,7 @@ function getStockfishMove(inputFen){
         var initialSquare = document.getElementById(parseCoords(initialCoords)).square;
         var newSquare = document.getElementById(parseCoords(newCoords)).square;
         movePiece(initialSquare, newSquare);
-        
+        blackEnPassant(inputFen);
         if(bestMove.length == 5){
             newSquare.occupation = bestMove[4];
             newSquare.setSprite();
