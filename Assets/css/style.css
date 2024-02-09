@@ -52,8 +52,11 @@ body {
 #end-game{
     display: none;
     position: absolute;
+    text-align: center;
+    width: 100%;
     top: 30%;
     background-color: black;
+    opacity:0.8;
     color: white;
     padding: 0.2em;
     font-size: 3em;
