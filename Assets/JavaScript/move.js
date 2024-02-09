@@ -116,43 +116,31 @@ function getCoordinates(id) {
 function traverseFrom(direction, coords) {
     var letterNum = coords[0];
     var num = coords[1];
+    var directionArray = direction.split("");
 
-    switch (direction){
+    for(var i=0; i<directionArray.length; i++){
+       switch (directionArray[i]){
         case "u":
             num++;
             coords[1] = num;
-            return coords;
+            break;
         case "d":
             num--;
             coords[1] = num;
-            return coords;
+            break;
         case "l":
             letterNum--;
             coords[0] =letterNum;
-            return coords;
+            break;
         case "r":
             letterNum++;
             coords[0] =letterNum;
-            return coords;
-        case "ur":
-            coords = traverseFrom('u', coords);
-            coords = traverseFrom('r', coords);
-            return coords;
-        case "ul":
-            coords = traverseFrom('u', coords);
-            coords = traverseFrom('l', coords);
-            return coords;
-        case "dr":
-            coords = traverseFrom('d', coords);
-            coords = traverseFrom('r', coords);
-            return coords;
-        case "dl":
-            coords = traverseFrom('d', coords);
-            coords = traverseFrom('l', coords);
-            return coords;
+            break;
         default:
             throw new console.error("invalid input in function traverseFrom");
+        } 
     }
+    return coords;
 }
 
 //takes coordinates and parses them to an id. Then grabs obj by id and checks the occupation value, and returns it. 
