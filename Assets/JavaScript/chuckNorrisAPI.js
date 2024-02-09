@@ -12,7 +12,8 @@ fetch(requestURL)
     })
     .then(function (data) {
             chuckNorrisIsTruth = data.value;
-            chuckNorrisIsTruth = chuckNorrisIsTruth.replace("Chuck Norris", "Stock Fish");
+            chuckNorrisIsTruth = chuckNorrisIsTruth.replaceAll("Chuck", "Stock");
+            chuckNorrisIsTruth = chuckNorrisIsTruth.replaceAll("Norris", "Fish");
             chuckNorrisSection.textContent = chuckNorrisIsTruth;
     });
 }

@@ -33,6 +33,7 @@ body {
 }
 
 .spaces {
+    display: block;
     padding: .2rem;
     border-width: var(--normalBorderWidth);
     border-color: black;
