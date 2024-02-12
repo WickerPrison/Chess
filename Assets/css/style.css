@@ -123,12 +123,12 @@ img{
 #movingPiece{
     display: none;
     position: absolute;
-    width: 8%;
+    width: calc(42rem * 0.12);
     padding: .2rem;
     aspect-ratio: 1/1;
     overflow: hidden;
     color: rgba(0,0,0,0);
 
-    left: 430px;
-    top: 406px;
+    left: 50%;
+    top: 50%;
 }
