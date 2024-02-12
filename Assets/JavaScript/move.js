@@ -10,7 +10,8 @@ function movePiece(fromSquare, toSquare){
     fromSquare.setSprite();
     
     toSquare.occupation = piece;
-    
+
+    //wait for animation to finish
     setTimeout(function (){
         toSquare.setSprite();
     

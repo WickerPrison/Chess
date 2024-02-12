@@ -48,6 +48,7 @@ function endTurn(fenString){
         return response.json();
     })
     .then(function(data){
+        // wait for animation to finish
         setTimeout(function(){
             // if there is a checkmate data.data will return "Game over in position.""
             if(data.data == "Game over in position."){
