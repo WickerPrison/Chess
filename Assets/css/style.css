@@ -118,3 +118,18 @@ img{
     height: 75%;
     object-fit: cover;
 }
+
+#movingPiece{
+    display: none;
+    position: absolute;
+    width: 9%;
+    padding: .2rem;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    color: rgba(0,0,0,0);
+
+    left: 430px;
+    top: 406px;
+
+    /* transition: all .3s ease; */
+}

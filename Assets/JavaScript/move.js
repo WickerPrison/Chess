@@ -4,71 +4,77 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 // this is the function that actually moves the pieces
 function movePiece(fromSquare, toSquare){
-    toSquare.occupation = fromSquare.occupation;
-    toSquare.setSprite();
+    animate(fromSquare, toSquare);
+    var piece = fromSquare.occupation;
     fromSquare.occupation = "0";
     fromSquare.setSprite();
 
-    if(castlesAvailable == "") return;
-
-    // this if statement moves stockfish's rook if it castles
-    // the code for the player castling is found in Square.getClicked()
-    if(fromSquare.id == "e8"){
-        if(toSquare.id == "c8" && castlesAvailable.includes("q")){
-            rookSquare = document.getElementById("a8").square;
-            d8Square = document.getElementById("d8").square;
-            rookSquare.occupation = "0";
-            rookSquare.setSprite();
-            d8Square.occupation = "r";
-            d8Square.setSprite();
+    setTimeout(function (){
+        console.log(fromSquare);
+        toSquare.occupation = piece;
+        toSquare.setSprite();
+    
+        if(castlesAvailable == "") return;
+    
+        // this if statement moves stockfish's rook if it castles
+        // the code for the player castling is found in Square.getClicked()
+        if(fromSquare.id == "e8"){
+            if(toSquare.id == "c8" && castlesAvailable.includes("q")){
+                rookSquare = document.getElementById("a8").square;
+                d8Square = document.getElementById("d8").square;
+                rookSquare.occupation = "0";
+                rookSquare.setSprite();
+                d8Square.occupation = "r";
+                d8Square.setSprite();
+            }
+            else if(toSquare.id == "g8" && castlesAvailable.includes("k")){
+                rookSquare = document.getElementById("h8").square;
+                f8Square = document.getElementById("f8").square;
+                rookSquare.occupation = "0";
+                rookSquare.setSprite();
+                f8Square.occupation = "r";
+                f8Square.setSprite();
+            }
         }
-        else if(toSquare.id == "g8" && castlesAvailable.includes("k")){
-            rookSquare = document.getElementById("h8").square;
-            f8Square = document.getElementById("f8").square;
-            rookSquare.occupation = "0";
-            rookSquare.setSprite();
-            f8Square.occupation = "r";
-            f8Square.setSprite();
+    
+        // this updates the fen to keep track of what castles are still legal
+        switch(fromSquare.id){
+            case "a8":
+                castlesAvailable = castlesAvailable.replace("q", "");
+                break;
+            case "h8":
+                castlesAvailable = castlesAvailable.replace("k", "");
+                break;
+            case "e8":
+                castlesAvailable = castlesAvailable.replace("q", "");
+                castlesAvailable = castlesAvailable.replace("k", "");
+                break;
+            case "a1":
+                castlesAvailable = castlesAvailable.replace("Q", "");
+                break;
+            case "h1":
+                castlesAvailable = castlesAvailable.replace("K", "");
+                break;
+            case "e1":
+                castlesAvailable = castlesAvailable.replace("Q", "");
+                castlesAvailable = castlesAvailable.replace("K", "");
+                break;
         }
-    }
-
-    // this updates the fen to keep track of what castles are still legal
-    switch(fromSquare.id){
-        case "a8":
-            castlesAvailable = castlesAvailable.replace("q", "");
-            break;
-        case "h8":
-            castlesAvailable = castlesAvailable.replace("k", "");
-            break;
-        case "e8":
-            castlesAvailable = castlesAvailable.replace("q", "");
-            castlesAvailable = castlesAvailable.replace("k", "");
-            break;
-        case "a1":
-            castlesAvailable = castlesAvailable.replace("Q", "");
-            break;
-        case "h1":
-            castlesAvailable = castlesAvailable.replace("K", "");
-            break;
-        case "e1":
-            castlesAvailable = castlesAvailable.replace("Q", "");
-            castlesAvailable = castlesAvailable.replace("K", "");
-            break;
-    }
-    switch(toSquare.id){
-        case "a8":
-            castlesAvailable = castlesAvailable.replace("q", "");
-            break;
-        case "h8":
-            castlesAvailable = castlesAvailable.replace("k", "");
-            break;
-        case "a1":
-            castlesAvailable = castlesAvailable.replace("Q", "");
-            break;
-        case "h1":
-            castlesAvailable = castlesAvailable.replace("K", "");
-            break;
-    }
+        switch(toSquare.id){
+            case "a8":
+                castlesAvailable = castlesAvailable.replace("q", "");
+                break;
+            case "h8":
+                castlesAvailable = castlesAvailable.replace("k", "");
+                break;
+            case "a1":
+                castlesAvailable = castlesAvailable.replace("Q", "");
+                break;
+            case "h1":
+                castlesAvailable = castlesAvailable.replace("K", "");
+                break;
+        }
+    }, animateTime * 1000);
 }
 
 // this function determines which squares can be moved to and tells the squares. It takes a Square class as an input
