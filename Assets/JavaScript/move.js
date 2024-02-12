@@ -8,10 +8,10 @@ function movePiece(fromSquare, toSquare){
     var piece = fromSquare.occupation;
     fromSquare.occupation = "0";
     fromSquare.setSprite();
-
+    
+    toSquare.occupation = piece;
+    
     setTimeout(function (){
-        console.log(fromSquare);
-        toSquare.occupation = piece;
         toSquare.setSprite();
     
         if(castlesAvailable == "") return;

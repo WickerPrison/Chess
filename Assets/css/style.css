@@ -119,10 +119,11 @@ img{
     object-fit: cover;
 }
 
+/* this is the piece that actually does the moving in the animation */
 #movingPiece{
     display: none;
     position: absolute;
-    width: 9%;
+    width: 8%;
     padding: .2rem;
     aspect-ratio: 1/1;
     overflow: hidden;
@@ -130,6 +131,4 @@ img{
 
     left: 430px;
     top: 406px;
-
-    /* transition: all .3s ease; */
 }
