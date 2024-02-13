@@ -45,13 +45,13 @@ var gameState = GameState.PLAYERTURN;
 
 var board = generateBoard();
 
-// var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-// var startTurnPosition = initialBoardFenString;
-// var fenArray = readFen(initialBoardFenString);
+var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+var startTurnPosition = initialBoardFenString;
+var fenArray = readFen(initialBoardFenString);
 
-var testFenString = "2Q5/k1p5/7R/3P4/8/8/6Q1/7K w - - 0 1";
-var startTurnPosition = testFenString;
-readFen(testFenString);
+// var testFenString = "k7/8/2b1b3/8/5p2/r7/6PK/6NR b - - 0 1";
+// var startTurnPosition = testFenString;
+// readFen(testFenString);
 
 
 // this function will show any string it is given on the screen for 0.6 seconds
