@@ -105,11 +105,15 @@ function addToFenStorrage(fenID){
 function getPreviousFen(){
     if(fenStorage.length-2 > 0){
         var fen = fenStorage[fenStorage.length-2];
+        fenStorage.pop(fenStorage.length-1);
     }
     else {
         var fen = fenStorage[0];
+        if(fenStorage.length-1 > 0){
+            fenStorage.pop(fenStorage.length-1);
+        }
+
     }
-    fenStorage.pop(fenStorage.length-1);
     return fen;
 
 }
