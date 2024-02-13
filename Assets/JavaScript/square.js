@@ -67,20 +67,31 @@ class Square{
                 return kingSquare.occupation == "K";
             })
 
+            // this sets up black to be able to en passant us after we move a pawn 2 squares
             checkEnPassant(selectedSquare, square);
 
+            
             if(findCheck(kingsSquare)){
                 showMessage("Cannot Move Into Check");
                 readFen(startTurnPosition);
                 return;
             }
-
+            
             // this checks if a pawn is moving into the back rank and then pulls up the promotion menu
             if(square.canPromote){
                 gameState = GameState.PROMOTINGPAWN;
                 promotionMenu.style.display = "block";
                 promotionSquare = square;
                 return;
+            }
+            
+            // this finds if we just performed an en passant and kills the pawn behind our pawn
+            if(square.enPassant){
+                var coordinates = getCoordinates(square.id);
+                coordinates[1] = 5;
+                var targetSquare = getSquareByID(parseCoords(coordinates));
+                targetSquare.occupation = 0;
+                targetSquare.setSprite();
             }
 
             clearAllSquares();
@@ -96,6 +107,9 @@ class Square{
             selectedSquare = square;
             square.el.style.borderColor = Colors.SELECTED;
             square.el.style.borderWidth = BorderWidths.THICK;
+            for(var i = 0; i < board.length; i++){
+                board[i].enPassant = false;
+            }
             highlightMovableSquares(selectedSquare);
         }
     }
