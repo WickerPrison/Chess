@@ -57,19 +57,21 @@ function endTurn(fenString){
                 if(gameState == GameState.WAITINGFORRESPONSE){
                     gameState = GameState.WHITEWINS;
                     endGame.innerText = "White Wins You Filthy Cheater!";
-                    endGame.style.display = "block";
+                    endGameDiv.style.display = "block";
                 }
                 // if stockfish just ended it's turn the game state will still be set to STOCKFISHTURN
                 else if (gameState == GameState.STOCKFISHTURN){
                     gameState = GameState.BLACKWINS;
                     endGame.innerText = "Black Wins!";
-                    endGame.style.display = "block";
+                    endGameDiv.style.display = "block";
                     if(localStorage.getItem("lossCounter")==null){
                         localStorage.setItem("lossCounter",1)
-                    }else{
-                    localStorage.setItem("lossCounter",+localStorage.getItem("lossCounter")+1);
-                }
+                    }
+                    else{
+                        localStorage.setItem("lossCounter",+localStorage.getItem("lossCounter")+1);
+                    }
                     updateNorrisIsTruth.removeEventListener("click", chuckNorrisInventedAPIs);
+
                     if(localStorage.getItem("lossCounter") == 1){
                     chuckNorrisSection.textContent = "You've lost to StockFish " + localStorage.getItem("lossCounter") + " time. "
                     }else {
