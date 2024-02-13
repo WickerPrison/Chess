@@ -97,6 +97,11 @@ body {
     border-radius: 0.5em;
     font-size: 1.5em;
 }
+#navigator-buttons{
+    position:absolute;
+    bottom: 10%;
+    left: 80%;
+}
 
 /* this just prevents the picture of the piece from being clicked on */
 /* we only want to click on the square itself */

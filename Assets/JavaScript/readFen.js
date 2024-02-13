@@ -9,7 +9,7 @@ function readFen(fenString){
 
     var ranks = fenString.split("/");
 
-    finalArray = [];
+    var finalArray = [];
     for(var i = 0; i < ranks.length; i++){
         var row = ranks[i].split("");
         var finalRow = [];
@@ -94,4 +94,21 @@ function writeFen(blackTurn = true){
     fenString += turnsNum;
 
     return fenString;
+}
+
+function addToFenStorrage(fenID){
+    fenStorage.push(fenID);
+}
+function getPreviousFen(){
+    //FUTURE TODO we need to grab the current fen, and see which one it is, and go one backwards.
+    if(fenStorage.length-2 > 0){
+        var fen = fenStorage[fenStorage.length-2];
+        fenStorage.pop(fenStorage.length -1);
+    }
+    else {
+        fenStorage.pop(fenStorage.length-1);
+        var fen = fenStorage[0];
+    }
+    return fen;
+
 }

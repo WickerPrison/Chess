@@ -1,5 +1,6 @@
 var promotionButtons = document.getElementsByClassName("promotionButton");
 var warning = document.getElementById("warning");
+var revert = document.getElementById("revert");
 
 // this tracks the total number of turns
 var turnsNum = 0;
@@ -45,13 +46,15 @@ var gameState = GameState.PLAYERTURN;
 
 var board = generateBoard();
 
-// var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-// var startTurnPosition = initialBoardFenString;
-// var fenArray = readFen(initialBoardFenString);
-
-var testFenString = "k7/8/4b3/3b4/5p2/8/5PPK/6NR w - - 0 1";
-var startTurnPosition = testFenString;
-readFen(testFenString);
+var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+var startTurnPosition = initialBoardFenString;
+var fenArray = readFen(initialBoardFenString);
+var fenStorage = [];
+// var testFenString = "k7/8/4b3/3b4/5p2/8/5PPK/6NR w - - 0 1";
+// var startTurnPosition = testFenString;
+addToFenStorrage(startTurnPosition);
+readFen(startTurnPosition);
+console.log(fenStorage);
 
 
 // this function will show any string it is given on the screen for 0.6 seconds
@@ -77,3 +80,14 @@ function promotePawn(event){
 for(var i = 0; i < promotionButtons.length; i++){
     promotionButtons[i].addEventListener("click", promotePawn);
 }
+
+revert.addEventListener('click', () => {
+    if (gameState != GameState.PLAYERTURN){
+        return;
+    } else {
+        let fen = getPreviousFen();
+
+        gameState = GameState.PLAYERTURN;
+        readFen(fen);
+    }
+});
