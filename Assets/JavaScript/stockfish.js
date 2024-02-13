@@ -64,6 +64,18 @@ function endTurn(fenString){
                     gameState = GameState.BLACKWINS;
                     endGame.innerText = "Black Wins!";
                     endGame.style.display = "block";
+                    if(localStorage.getItem("lossCounter")==null){
+                        localStorage.setItem("lossCounter",1)
+                    }else{
+                    localStorage.setItem("lossCounter",+localStorage.getItem("lossCounter")+1);
+                }
+                    updateNorrisIsTruth.removeEventListener("click", chuckNorrisInventedAPIs);
+                    if(localStorage.getItem("lossCounter") == 1){
+                    chuckNorrisSection.textContent = "You've lost to StockFish " + localStorage.getItem("lossCounter") + " time. "
+                    }else {
+                        chuckNorrisSection.textContent = "You've lost to StockFish " + localStorage.getItem("lossCounter") + " times. "
+                    }
+    
                 }
                 gameOver = true;
             }
