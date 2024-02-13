@@ -60,6 +60,7 @@ body {
     position: absolute;
     width: 100%;
     top: 30%;
+    z-index: 2;
 }
 
 #end-game{
@@ -167,7 +168,8 @@ img{
 #movingPiece{
     display: none;
     position: absolute;
-    width: calc(42rem * 0.12);
+    max-width: calc(42rem * 0.12);
+    width: 12%;
     padding: .2rem;
     aspect-ratio: 1/1;
     overflow: hidden;
@@ -186,7 +188,7 @@ img{
 
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 650px){
     body{
         margin: 0;
     }
@@ -195,5 +197,9 @@ img{
         width: 12%;
         height: 10vw;
         position: relative;
+    }
+
+    .spaces {
+        font-size: 0.7em;
     }
 }
