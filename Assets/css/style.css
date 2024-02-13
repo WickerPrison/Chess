@@ -111,6 +111,24 @@ body {
     border-radius: 0.5em;
     font-size: 1.5em;
 }
+#navigator-buttons{
+    position:absolute;
+    bottom: 10%;
+    left: 80%;
+}
+
+/* undo button styles */
+#revert {
+    background-color: lightblue;
+    font-weight: 700;
+    border-radius: 25%;
+    border: 0.25rem solid black;
+    padding: 1rem;
+
+}
+#revert:active{
+    box-shadow: 0.25rem 0 0.25rem black;
+}
 
 /* this just prevents the picture of the piece from being clicked on */
 /* we only want to click on the square itself */
@@ -119,4 +137,18 @@ img{
     width: 75%;
     height: 75%;
     object-fit: cover;
+}
+
+/* this is the piece that actually does the moving in the animation */
+#movingPiece{
+    display: none;
+    position: absolute;
+    width: calc(42rem * 0.12);
+    padding: .2rem;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    color: rgba(0,0,0,0);
+
+    left: 50%;
+    top: 50%;
 }

@@ -9,7 +9,7 @@ function readFen(fenString){
 
     var ranks = fenString.split("/");
 
-    finalArray = [];
+    var finalArray = [];
     for(var i = 0; i < ranks.length; i++){
         var row = ranks[i].split("");
         var finalRow = [];
@@ -94,4 +94,22 @@ function writeFen(blackTurn = true){
     fenString += turnsNum;
 
     return fenString;
+}
+
+//adds a fen to the fenStorage object
+function addToFenStorrage(fenID){
+    fenStorage.push(fenID);
+}
+
+//grabs the previous fen taking into account that the current is already written into the storage array.
+function getPreviousFen(){
+    if(fenStorage.length-2 > 0){
+        var fen = fenStorage[fenStorage.length-2];
+    }
+    else {
+        var fen = fenStorage[0];
+    }
+    fenStorage.pop(fenStorage.length-1);
+    return fen;
+
 }
