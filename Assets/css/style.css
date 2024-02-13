@@ -109,6 +109,24 @@ body {
     border-radius: 0.5em;
     font-size: 1.5em;
 }
+#navigator-buttons{
+    position:absolute;
+    bottom: 10%;
+    left: 80%;
+}
+
+/* undo button styles */
+#revert {
+    background-color: lightblue;
+    font-weight: 700;
+    border-radius: 25%;
+    border: 0.25rem solid black;
+    padding: 1rem;
+
+}
+#revert:active{
+    box-shadow: 0.25rem 0 0.25rem black;
+}
 
 /* this just prevents the picture of the piece from being clicked on */
 /* we only want to click on the square itself */
