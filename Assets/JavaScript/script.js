@@ -49,7 +49,7 @@ var board = generateBoard();
 // var startTurnPosition = initialBoardFenString;
 // var fenArray = readFen(initialBoardFenString);
 
-var testFenString = "2Q5/k1p5/7R/3P4/8/8/6Q1/7K w - - 0 1";
+var testFenString = "k7/8/8/8/2r5/8/1r6/7K w - - 0 1";
 var startTurnPosition = testFenString;
 readFen(testFenString);
 
