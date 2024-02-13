@@ -72,17 +72,20 @@ function endTurn(fenString){
                 endGame.innerText = "Stalemate";
                 endGame.style.display = "block";
             }
-            gameOver = true;
-        }
-        else{
-            // if stockfish returns anything else the game should proceed
-            if(gameState == GameState.STOCKFISHTURN){
-                startTurnPosition = writeFen();
-                addToFenStorrage(startTurnPosition);
-                console.log(fenStorage);
+            else{
+                // if stockfish returns anything else the game should proceed
+                if(gameState == GameState.STOCKFISHTURN){
+                    startTurnPosition = writeFen();
+                    addToFenStorrage(startTurnPosition);
+                    console.log(fenStorage);
 
-                gameState = GameState.PLAYERTURN;
+                    gameState = GameState.PLAYERTURN;
 
+                }
+                if(gameState == GameState.WAITINGFORRESPONSE){
+                    gameState = GameState.STOCKFISHTURN;
+                    getStockfishMove(writeFen());
+                }
             }
         }, animateTime * 1000);
     })
