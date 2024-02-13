@@ -10,16 +10,22 @@
 }
 
 body {
+    box-sizing: border-box;
+    width: 100%;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin: 4.5rem;
-    padding-top: 3rem;
+    /* margin: 4.5rem; */
+    margin-top: 0;
+    padding-top: 1rem;
 }
 
 .board {
-    min-width: 42rem;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 42rem;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
@@ -38,6 +44,7 @@ body {
     border-width: var(--normalBorderWidth);
     border-color: black;
     overflow: hidden;
+    position: relative;
 }
 
 .board > .spaces {
@@ -65,7 +72,8 @@ body {
 }
 
 .chuckNorrisContainer {
-    min-width: 42rem;
+    max-width: 42rem;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1rem;
@@ -87,13 +95,19 @@ body {
     position: absolute;
     top: 30%;
     box-sizing: border-box;
-    width: 50%;
-    left: 25%;
+    margin: 0 5%;
     background-color: var(--grey);
     border: 1rem solid black;
     border-radius: .5em;
     font-size: 1.5em;
     text-align: center;
+    width: 90%;
+}
+
+.promotionButton{
+    width: 12%;
+    height: 3em;
+    position: relative;
 }
 
 #promotionContainer{
@@ -101,32 +115,40 @@ body {
     justify-content: space-evenly;
 }
 
+.promotionButton img{
+    width: 100%;
+}
+
 #warning{
     display: none;
     position: absolute;
-    background-color: var(--grey);
-    border: 1rem solid black;
+    width: 100%;
     top: 30%;
-    padding: .2rem;
-    border-radius: 0.5em;
-    font-size: 1.5em;
+    text-align: center;
+    background-color: black;
+    opacity:0.8;
+    color: white;
+    padding: 0.2em;
+    font-size: 3em;
 }
+
 #navigator-buttons{
     position:absolute;
     bottom: 10%;
     left: 80%;
+    box-sizing: border-box;
 }
 
 /* undo button styles */
 #revert {
-    background-color: lightblue;
+    background-color: var(--grey);
     font-weight: 700;
     border-radius: 25%;
     border: 0.25rem solid black;
     padding: 1rem;
-
 }
 #revert:active{
+    background-color: var(--green);
     box-shadow: 0.25rem 0 0.25rem black;
 }
 
@@ -134,8 +156,10 @@ body {
 /* we only want to click on the square itself */
 img{
     pointer-events: none;
-    width: 75%;
-    height: 75%;
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
     object-fit: cover;
 }
 
@@ -151,4 +175,25 @@ img{
 
     left: 50%;
     top: 50%;
+}
+
+@media screen and (max-width: 1100px){
+    #navigator-buttons{
+        position: relative;
+        left: 0;
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (max-width: 768px){
+    body{
+        margin: 0;
+    }
+
+    .promotionButton{
+        width: 12%;
+        height: 10vw;
+        position: relative;
+    }
 }

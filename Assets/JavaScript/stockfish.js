@@ -92,7 +92,6 @@ function endTurn(fenString){
                 if(gameState == GameState.STOCKFISHTURN){
                     startTurnPosition = writeFen();
                     addToFenStorrage(startTurnPosition);
-                    console.log(fenStorage);
 
                     gameState = GameState.PLAYERTURN;
 
