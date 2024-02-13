@@ -81,12 +81,14 @@ for(var i = 0; i < promotionButtons.length; i++){
     promotionButtons[i].addEventListener("click", promotePawn);
 }
 
+//event listener for the undo button
 revert.addEventListener('click', () => {
+    //makes sure its the players turn
     if (gameState != GameState.PLAYERTURN){
         return;
     } else {
+        //gets the previous fen, sets the gameState to player turn (possibly redundant) and reads the previous fen setting the board to that posiiton.
         let fen = getPreviousFen();
-
         gameState = GameState.PLAYERTURN;
         readFen(fen);
     }

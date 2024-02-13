@@ -102,6 +102,8 @@ body {
     bottom: 10%;
     left: 80%;
 }
+
+/* undo button styles */
 #revert {
     background-color: lightblue;
     font-weight: 700;

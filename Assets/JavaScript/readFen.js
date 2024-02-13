@@ -96,19 +96,20 @@ function writeFen(blackTurn = true){
     return fenString;
 }
 
+//adds a fen to the fenStorage object
 function addToFenStorrage(fenID){
     fenStorage.push(fenID);
 }
+
+//grabs the previous fen taking into account that the current is already written into the storage array.
 function getPreviousFen(){
-    //FUTURE TODO we need to grab the current fen, and see which one it is, and go one backwards.
     if(fenStorage.length-2 > 0){
         var fen = fenStorage[fenStorage.length-2];
-        fenStorage.pop(fenStorage.length -1);
     }
     else {
-        fenStorage.pop(fenStorage.length-1);
         var fen = fenStorage[0];
     }
+    fenStorage.pop(fenStorage.length-1);
     return fen;
 
 }
