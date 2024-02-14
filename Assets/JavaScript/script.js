@@ -46,12 +46,14 @@ var gameState = GameState.PLAYERTURN;
 
 var board = generateBoard();
 
-// var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-// var startTurnPosition = initialBoardFenString;
-// var fenArray = readFen(initialBoardFenString);
-var testFenString = "k7/7P/8/8/8/8/8/6K1 w - - 0 1";
-var startTurnPosition = testFenString;
-var fenArray = readFen(testFenString);
+var initialBoardFenString = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+var startTurnPosition = initialBoardFenString;
+var fenArray = readFen(initialBoardFenString);
+
+// var testFenString = "k7/7P/8/8/8/8/8/6K1 w - - 0 1";
+// var startTurnPosition = testFenString;
+// var fenArray = readFen(testFenString);
+
 var fenStorage = [];
 addToFenStorrage(startTurnPosition);
 readFen(startTurnPosition);
