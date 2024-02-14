@@ -45,6 +45,7 @@ body {
     border-color: black;
     overflow: hidden;
     position: relative;
+    cursor: default;
 }
 
 .board > .spaces {
