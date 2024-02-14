@@ -85,14 +85,13 @@ function endTurn(fenString){
             else if(data.data == "bestmove (none)"){
                 gameState = GameState.STALEMATE;
                 endGame.innerText = "Stalemate";
-                endGame.style.display = "block";
+                endGameDiv.style.display = "block";
             }
             else{
                 // if stockfish returns anything else the game should proceed
                 if(gameState == GameState.STOCKFISHTURN){
                     startTurnPosition = writeFen();
                     addToFenStorrage(startTurnPosition);
-                    console.log(fenStorage);
 
                     gameState = GameState.PLAYERTURN;
 
