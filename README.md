@@ -1,7 +1,7 @@
 # NotChess.com
 
 ## Description
-This website provides users the opportunity to play chess against Stockfish, the current stronges chess AI. It also provides users with humorous facts about Stockfish, in the same vein as Chuck Norris jokes. It was built using Tailwind, CSS, HTML, and JavaScript.\
+This website provides users the opportunity to play chess against Stockfish, the current strongest chess AI. It also provides users with humorous facts about Stockfish, in the same vein as Chuck Norris jokes. It was built using Tailwind, CSS, HTML, and JavaScript.\
 Stockfish was accessed using this API: https://stockfish.online/ \
 Chuck Norris jokes were obtained using this API: https://api.chucknorris.io/ \
 The icons for the pieces were created by [Cburnett](https://en.wikipedia.org/wiki/User:Cburnett) and used under the [GNU Free Documentation License](https://www.gnu.org/licenses/gpl-3.0.html)
